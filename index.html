@@ -652,7 +652,7 @@
             <p><strong>IP Lookup</strong> is used to find the geographical location (geolocation) and network information of an IP address. This can help you determine the country, city, and Internet Service Provider (ISP) associated with a specific IP.</p>
             <br>
             <h3>DNS Lookup</h3>
-            <p><strong>DNS Lookup</strong> is a powerful tool for querying the Domain Name System (DNS). DNS records are like a phonebook for the internet, translating human-readable domain names (like <code>google.com</code>) into machine-readable IP addresses. This tool will display various records, including A, AAAA, and TXT records. (Under Construction)</p>
+            <p><strong>DNS Lookup</strong> is a powerful tool for querying the Domain Name System (DNS). DNS records are like a phonebook for the internet, translating human-readable domain names (like <code>google.com</code>) into machine-readable IP addresses. This tool will display various records, including A, AAAA, and TXT records. </p>
             <br>
             <h3>MX Lookup</h3>
             <p>An <strong>MX Lookup</strong> queries a domain for its Mail Exchanger (MX) records. These records tell the internet which mail servers are responsible for accepting email on behalf of a domain. It is an essential step for diagnosing email delivery issues.</p>
@@ -1100,7 +1100,7 @@
                     document.getElementById('domainInfoResults').style.display = 'block';
                 }
             } catch (error) {
-                displayError('error-message-domain-info', 'This section is under construction. Please check back later for updates.', error);
+                displayError('error-message-domain-info', 'Unable to retried DNS information. Please check back later for updates.', error);
             } finally {
                 document.getElementById('domainInfoLoadingSpinner').style.display = 'none';
             }
@@ -1337,4 +1337,5 @@
     </script>
 </body>
 </html>
+
 
