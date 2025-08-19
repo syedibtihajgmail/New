@@ -1100,7 +1100,7 @@
                     document.getElementById('domainInfoResults').style.display = 'block';
                 }
             } catch (error) {
-                displayError('error-message-domain-info', 'Unable to retried DNS information. Please check back later for updates.', error);
+                displayError('error-message-domain-info', 'Unable to retrieve DNS information. Please check back later for updates.', error);
             } finally {
                 document.getElementById('domainInfoLoadingSpinner').style.display = 'none';
             }
@@ -1337,5 +1337,6 @@
     </script>
 </body>
 </html>
+
 
 
