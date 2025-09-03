@@ -278,6 +278,7 @@
         <button id="showDomainInfo">Domain Info</button>
         <button id="showSecurityChecks">Security Checks</button>
         <button id="showKnowYourLookup">Know Your Lookup</button>
+		<button id="showAboutUs">About Us</button>
     </nav>
 
     <div class="introduction">
@@ -673,6 +674,17 @@
             <p>The <strong>Security Checks</strong> section provides a quick assessment of an IP address or domain. It checks an IP for associations with known VPNs, proxies, or TOR nodes, and it verifies a domain's basic record configuration to identify potential issues or signs of a non-functional site.</p>
         </div>
     </div>
+	
+	<div id="aboutUsSection" class="content-section">
+        <div class="container" style="text-align: left;">
+            <h1>About Us</h1>
+            <p>Hi, I'm a Systems Analyst with a strong foundation in Salesforce Administration and Microsoft 365 Administration, dedicated to streamlining digital workflows and enhancing user experiences. Over the years, I've developed a keen eye for diagnosing infrastructure issues and building tools that make technical tasks simpler and faster.</p>
+            <p>This DNS tools website is my way of sharing that expertise—offering reliable, easy-to-use utilities for IT professionals, developers, and curious minds alike. Whether you're troubleshooting DNS records or optimizing your domain setup, I hope these tools save you time and headaches.</p>
+            <p>Feel free to reach out with feedback, questions, or collaboration ideas. I’d love to hear from you!</p>
+            <p>📧 Contact: ipdnstools@gmail.com</p>
+        </div>
+    </div>
+
 
     <script>
         // --- Helper functions for DOM manipulation and API calls ---
@@ -1237,7 +1249,8 @@
             ipLeakTestSection: 'showIpLeakTest',
             domainInfoSection: 'showDomainInfo',
             securityChecksSection: 'showSecurityChecks',
-            knowYourLookupSection: 'showKnowYourLookup'
+            knowYourLookupSection: 'showKnowYourLookup',
+			aboutUsSection: 'showAboutUs'
         };
 
         function showSection(sectionId) {
@@ -1337,6 +1350,5 @@
     </script>
 </body>
 </html>
-
 
 
