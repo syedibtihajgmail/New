@@ -6,285 +6,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP & DNS Lookup Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eef2f7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eef9 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            color: #333;
+            color: #1a1a2e;
+            padding: 0 15px 30px;
         }
 
-        /* Navigation Bar Styling */
-        nav {
+        /* Blue Top Bar – full width, tabs wrap */
+        .blue-bar {
             width: 100%;
-            background-color: #2c3e50;
-            padding: 10px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            padding: 10px 20px 0 20px;
             display: flex;
+            align-items: flex-end;
             justify-content: center;
-            flex-wrap: wrap; /* Allows buttons to wrap to the next line on small screens */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            min-height: 70px;
         }
-
-        nav button {
-            background-color: #34495e;
-            color: white;
+        .tab-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: flex-end;
+            max-width: 850px;
+            width: 100%;
+        }
+        .tab-button {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            color: rgba(255, 255, 255, 0.9);
             border: none;
             padding: 12px 22px;
-            margin: 5px; /* Added margin for better spacing on mobile */
-            border-radius: 5px;
+            border-radius: 14px 14px 0 0;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
             white-space: nowrap;
+            letter-spacing: -0.2px;
         }
-
-        nav button:hover {
-            background-color: #1abc9c;
+        .tab-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
             transform: translateY(-2px);
         }
-
-        nav button.active {
-            background-color: #1abc9c;
-            box-shadow: 0 0 15px rgba(26, 188, 156, 0.7);
-            transform: scale(1.05);
+        .tab-button.active {
+            background: white;
+            color: #1e3a8a;
+            font-weight: 700;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Content Container Styling */
-        .content-section {
-            display: none;
-            width: 100%;
-            max-width: 700px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            text-align: center;
-        }
-
-        h1, h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-direction: row; /* Default for desktop */
-            flex-wrap: nowrap;
-        }
-        
-        .input-group input {
-            flex-grow: 1;
-            padding: 12px;
-            border: 1px solid #bdc3c7;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-        }
-
-        .input-group button, .input-group-button {
-            padding: 12px 25px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .input-group button:hover, .input-group-button:hover {
-            background-color: #2980b9;
-        }
-
-        #findMyIpLink {
-            display: block;
-            margin-bottom: 20px;
-            color: #3498db;
-            text-decoration: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        #findMyIpLink:hover {
-            color: #2980b9;
-            text-decoration: underline;
-        }
-
-        .results {
-            text-align: left;
-            margin-top: 25px;
-            border-top: 2px solid #ecf0f1;
-            padding-top: 20px;
-            display: none;
-        }
-
-        .results p {
-            margin: 10px 0;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .results p strong {
-            color: #2c3e50;
-        }
-
-        /* Tables */
-        .results table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            table-layout: fixed;
-        }
-
-        .results th, .results td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            word-wrap: break-word;
-        }
-
-        .results th {
-            background-color: #f4f6f8;
-            font-weight: bold;
-            color: #555;
-        }
-
-        /* Loading Spinner */
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-            display: none; /* Hidden by default */
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Error Message */
-        .error-message {
-            color: #e74c3c;
-            text-align: center;
-            margin-top: 15px;
-            display: none;
-            font-weight: bold;
-        }
-        
-        /* Security Check Statuses */
-        .security-status {
-            font-weight: bold;
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 1.1em;
-        }
-
-        .security-status.safe {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .security-status.warning {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        
-        /* Security Sub-sections */
-        .security-sub-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ecf0f1;
+        @media (max-width: 768px) {
+            .blue-bar { padding: 10px; min-height: auto; }
+            .tab-row { justify-content: center; }
+            .tab-button { border-radius: 12px; padding: 10px 16px; font-size: 13px; }
+            .tab-button.active { border-radius: 12px; }
         }
 
         .introduction {
             width: 100%;
             max-width: 700px;
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
             text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            margin-top: 20px;
         }
+        .introduction p { color: #444; font-size: 15px; line-height: 1.7; }
 
-        /* Mobile-first styling */
+        .content-section { display: none; width: 100%; max-width: 700px; margin-bottom: 20px; }
+        .container {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 35px 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        .container:hover { transform: translateY(-2px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); }
+        h1 {
+            font-size: 26px; font-weight: 700;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 10px;
+        }
+        h2, h3 { color: #1a1a2e; font-weight: 600; margin-bottom: 20px; }
+        .input-group { display: flex; gap: 12px; margin-bottom: 15px; flex-wrap: nowrap; }
+        .input-group input, .input-group select {
+            flex-grow: 1; padding: 14px 18px; border: 1px solid #e0e5f0; border-radius: 14px;
+            font-size: 15px; background: #f9fafc; transition: all 0.3s ease; outline: none; color: #1a1a2e;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #818cf8; background: #fff; box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+        }
+        .input-group button, .input-group-button {
+            padding: 14px 28px; background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white; border: none; border-radius: 14px; cursor: pointer; font-size: 15px;
+            font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); white-space: nowrap;
+        }
+        .input-group button:hover, .input-group-button:hover {
+            transform: translateY(-1px); box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+        #findMyIpLink {
+            display: inline-block; margin-bottom: 20px; color: #6366f1; text-decoration: none;
+            cursor: pointer; font-weight: 600; transition: color 0.2s; font-size: 14px;
+        }
+        #findMyIpLink:hover { color: #4f46e5; text-decoration: underline; }
+
+        .results {
+            text-align: left; margin-top: 25px; border-top: 2px solid #f0f2f5;
+            padding-top: 25px; display: none;
+        }
+        .results p { margin: 12px 0; line-height: 1.7; color: #444; }
+        .results p strong { color: #1a1a2e; }
+        .results table {
+            width: 100%; border-collapse: collapse; margin-top: 15px; border-radius: 12px;
+            overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .results th, .results td {
+            border: 1px solid #eef0f5; padding: 14px 16px; text-align: left; word-break: break-word;
+        }
+        .results th { background: #f8fafd; font-weight: 600; color: #1e293b; font-size: 14px; }
+
+        .loading-spinner {
+            border: 4px solid #f0f2f5; border-top: 4px solid #6366f1; border-radius: 50%;
+            width: 28px; height: 28px; animation: spin 0.8s linear infinite; margin: 20px auto; display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .error-message {
+            color: #ef4444; text-align: center; margin-top: 15px; display: none; font-weight: 500;
+            background: #fef2f2; padding: 12px; border-radius: 12px;
+        }
+        .security-status { font-weight: 600; margin-top: 15px; padding: 14px; border-radius: 12px; text-align: center; font-size: 15px; }
+        .security-status.safe { background: #ecfdf5; color: #065f46; }
+        .security-status.warning { background: #fffbeb; color: #92400e; }
+        .security-sub-section { margin-top: 35px; padding-top: 30px; border-top: 1px solid #eef0f5; }
+        .generated-record-box {
+            background: #f8fafd; border: 1px solid #e0e5f0; border-radius: 14px; padding: 16px;
+            margin-top: 15px; word-break: break-all; font-family: 'Fira Code', monospace;
+            font-size: 15px; color: #1a1a2e; text-align: left;
+        }
+        .copy-btn {
+            background: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 10px;
+            cursor: pointer; margin-top: 12px; font-weight: 600; transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+        .copy-btn:hover { background: #059669; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3); transform: translateY(-1px); }
+
+        .mechanism-row {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
+            background: #f9fafc; padding: 12px; border-radius: 14px; border: 1px solid #e0e5f0; transition: all 0.2s;
+        }
+        .mechanism-row:hover { background: #fff; border-color: #c7d2fe; }
+        .mechanism-row select, .mechanism-row input {
+            padding: 12px 14px; border: 1px solid #e0e5f0; border-radius: 10px; font-size: 14px;
+            background: white; outline: none; transition: border 0.2s;
+        }
+        .mechanism-row select:focus, .mechanism-row input:focus { border-color: #818cf8; box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.1); }
+        .mechanism-row .qualifier-select { width: 90px; }
+        .mechanism-row .mechanism-type-select { flex: 2; min-width: 140px; }
+        .mechanism-row .mechanism-value-input { flex: 3; min-width: 180px; }
+        .mechanism-row .remove-mech-btn {
+            background: #fecaca; color: #b91c1c; border: none; border-radius: 10px; padding: 10px 15px;
+            cursor: pointer; font-weight: 700; transition: all 0.2s;
+        }
+        .mechanism-row .remove-mech-btn:hover { background: #ef4444; color: white; }
+
+        .speed-cards { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
+        .speed-card {
+            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 25px 30px;
+            text-align: center; min-width: 150px; box-shadow: 0 8px 20px rgba(0,0,0,0.04); transition: transform 0.2s;
+        }
+        .speed-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.06); }
+        .speed-value { font-size: 36px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+        .speed-label { font-size: 14px; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .server-info { font-size: 0.9em; color: #6b7280; margin-bottom: 20px; text-align: center; }
+        .geo-info { font-size: 0.9em; color: #6b7280; margin-top: 15px; }
+
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 10px;
-                align-items: center;
-            }
-
-            nav button {
-                width: 95%;
-                margin: 5px 0;
-            }
-
-            .input-group {
-                flex-direction: column;
-            }
-
-            .input-group button, .input-group-button {
-                width: 100%;
-            }
+            .tab-button { border-radius: 12px; padding: 10px 16px; font-size: 13px; }
+            .input-group { flex-direction: column; }
+            .input-group button, .input-group-button { width: 100%; }
+            .mechanism-row { flex-direction: column; align-items: stretch; }
+            .mechanism-row select, .mechanism-row input { width: 100%; }
+            .container { padding: 25px 20px; }
+            .speed-cards { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <button id="showIpLookup" class="active">IP Lookup</button>
-        <button id="showDnsLookup">DNS Lookup</button>
-        <button id="showMxLookup">MX Lookup</button>
-        <button id="showDmarcLookup">DMARC</button>
-        <button id="showSpfLookup">SPF</button>
-        <button id="showDkimLookup">DKIM</button>
-        <button id="showCnameLookup">CNAME</button>
-        <button id="showAaaaLookup">AAAA</button>
-        <button id="showIpLeakTest">IP Leak Test</button>
-        <button id="showDomainInfo">Domain Info</button>
-        <button id="showSecurityChecks">Security Checks</button>
-        <button id="showKnowYourLookup">Know Your Lookup</button>
-		<button id="showAboutUs">About Us</button>
-    </nav>
-
-    <div class="introduction">
-        <p>Welcome to the free IP & DNS Lookup Tool. This page provides a comprehensive set of network diagnostic tools, allowing you to perform IP address geolocation, look up various DNS records, and run security checks on both IP addresses and domains.</p>
+    <!-- Blue Top Bar with Wrapping Worksheet Tabs -->
+    <div class="blue-bar">
+        <div class="tab-row">
+            <button id="showIpLookup" class="tab-button active">IP Lookup</button>
+            <button id="showDnsLookup" class="tab-button">DNS Lookup</button>
+            <button id="showMxLookup" class="tab-button">MX Lookup</button>
+            <button id="showDmarcLookup" class="tab-button">DMARC Suite</button>
+            <button id="showSpfLookup" class="tab-button">SPF Suite</button>
+            <button id="showDkimLookup" class="tab-button">DKIM</button>
+            <button id="showCnameLookup" class="tab-button">CNAME</button>
+            <button id="showAaaaLookup" class="tab-button">AAAA</button>
+            <button id="showIpLeakTest" class="tab-button">IP Leak Test</button>
+            <button id="showSecurityChecks" class="tab-button">Security Checks</button>
+            <button id="showSpeedTest" class="tab-button">Speed Test</button>
+            <button id="showKnowYourLookup" class="tab-button">Know Your Lookup</button>
+            <button id="showAboutUs" class="tab-button">About Us</button>
+        </div>
     </div>
 
+    <div class="introduction">
+        <p>Welcome to the free IP & DNS Lookup Tool. This page provides a comprehensive set of network diagnostic tools, including IP geolocation, DNS record lookups, security checks, and a built-in internet speed test with upload, download, and geo location.</p>
+    </div>
+
+    <!-- IP Lookup Section -->
     <div id="ipLookupSection" class="content-section" style="display: block;">
         <div class="container">
             <h1>IP Address Geolocation</h1>
@@ -295,10 +252,8 @@
                 </div>
                 <a href="#" id="findMyIpLink">Find My IP</a>
             </form>
-            
             <p id="error-message-ip" class="error-message"></p>
             <div id="ipLoadingSpinner" class="loading-spinner"></div>
-
             <div id="ipResults" class="results">
                 <h2>Geolocation Details</h2>
                 <p><strong>IP Address:</strong> <span id="ip-address"></span></p>
@@ -311,7 +266,8 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- DNS Lookup Section -->
     <div id="dnsLookupSection" class="content-section">
         <div class="container">
             <h1>DNS Record Lookup</h1>
@@ -321,27 +277,19 @@
                     <button type="submit" id="lookupDnsButton">Lookup DNS</button>
                 </div>
             </form>
-            
             <p id="error-message-dns" class="error-message"></p>
             <div id="dnsLoadingSpinner" class="loading-spinner"></div>
-
             <div id="dnsResults" class="results">
                 <h2>DNS Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dnsTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="dnsTableBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- MX Lookup Section -->
     <div id="mxLookupSection" class="content-section">
         <div class="container">
             <h1>MX Record Lookup</h1>
@@ -351,28 +299,19 @@
                     <button type="submit" id="lookupMxButton">Lookup MX</button>
                 </div>
             </form>
-            
             <p id="error-message-mx" class="error-message"></p>
             <div id="mxLoadingSpinner" class="loading-spinner"></div>
-
             <div id="mxResults" class="results">
                 <h2>MX Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Pref</th>
-                            <th>Hostname</th>
-                            <th>IP Addresses</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="mxTableBody">
-                        </tbody>
+                    <thead><tr><th>Pref</th><th>Hostname</th><th>IP Addresses</th><th>TTL</th></tr></thead>
+                    <tbody id="mxTableBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- DMARC Suite Section -->
     <div id="dmarcLookupSection" class="content-section">
         <div class="container">
             <h1>DMARC Record Lookup</h1>
@@ -382,30 +321,50 @@
                     <button type="submit" id="lookupDmarcButton">Lookup DMARC</button>
                 </div>
             </form>
-            
             <p id="error-message-dmarc" class="error-message"></p>
             <div id="dmarcLoadingSpinner" class="loading-spinner"></div>
-
             <div id="dmarcResults" class="results">
                 <h2>DMARC Record</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dmarcTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="dmarcTableBody"></tbody>
                 </table>
-                <p style="font-size: 0.9em; color: #888; margin-top: 15px;">
-                    DMARC records are TXT records starting with "v=DMARC1".
-                </p>
+                <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">DMARC records are TXT records starting with "v=DMARC1".</p>
+            </div>
+            <div class="security-sub-section" style="text-align:left;">
+                <h2>DMARC Record Generator</h2>
+                <p style="font-size:0.9em;color:#6b7280;margin-bottom:20px;">Fill in the fields below to generate a complete DMARC DNS record for your domain.</p>
+                <form id="dmarcGeneratorForm">
+                    <div style="margin-bottom:15px;">
+                        <label for="dmarcGenDomain"><strong>Domain</strong></label>
+                        <input type="text" id="dmarcGenDomain" placeholder="example.com" style="width:100%;padding:14px;border-radius:14px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;">
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                        <div><label><strong>Policy (p)</strong></label><select id="dmarcGenPolicy" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
+                        <div><label><strong>Subdomain Policy (sp)</strong></label><select id="dmarcGenSubPolicy" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"><option value="">(same as policy)</option><option value="none">none</option><option value="quarantine">quarantine</option><option value="reject">reject</option></select></div>
+                        <div><label><strong>Percentage (pct)</strong></label><input type="number" id="dmarcGenPct" min="1" max="100" placeholder="100" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"></div>
+                        <div><label><strong>Aggregate Reports (rua)</strong></label><input type="email" id="dmarcGenRua" placeholder="mailto:reports@example.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"></div>
+                        <div><label><strong>Forensic Reports (ruf)</strong></label><input type="email" id="dmarcGenRuf" placeholder="mailto:forensic@example.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"></div>
+                        <div><label><strong>DKIM Alignment (adkim)</strong></label><select id="dmarcGenAdkim" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"><option value="r">Relaxed (r)</option><option value="s">Strict (s)</option></select></div>
+                        <div><label><strong>SPF Alignment (aspf)</strong></label><select id="dmarcGenAspf" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"><option value="r">Relaxed (r)</option><option value="s">Strict (s)</option></select></div>
+                        <div><label><strong>Failure Options (fo)</strong></label><select id="dmarcGenFo" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"><option value="">(default)</option><option value="0">0 (if both SPF/DKIM fail)</option><option value="1">1 (if either fails)</option><option value="d">d (DKIM failure only)</option><option value="s">s (SPF failure only)</option></select></div>
+                        <div><label><strong>Reporting Format (rf)</strong></label><input type="text" id="dmarcGenRf" placeholder="afrf" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"></div>
+                        <div><label><strong>Reporting Interval (ri) seconds</strong></label><input type="number" id="dmarcGenRi" min="60" placeholder="86400" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;"></div>
+                    </div>
+                    <button type="submit" class="input-group-button" style="margin-top:25px;width:100%;">Generate DMARC Record</button>
+                </form>
+                <div id="dmarcGeneratorResult" style="display:none;margin-top:25px;">
+                    <h3>Generated DMARC DNS Entry</h3>
+                    <p style="font-size:0.9em;color:#6b7280;">Add the following TXT record to your DNS:</p>
+                    <div class="generated-record-box" id="generatedDmarcRecord"></div>
+                    <button class="copy-btn" id="copyDmarcRecordBtn">📋 Copy to Clipboard</button>
+                    <p id="copyConfirmation" style="color:#10b981;margin-top:10px;display:none;">Copied!</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- SPF Suite Section -->
     <div id="spfLookupSection" class="content-section">
         <div class="container">
             <h1>SPF Record Lookup</h1>
@@ -415,30 +374,40 @@
                     <button type="submit" id="lookupSpfButton">Lookup SPF</button>
                 </div>
             </form>
-            
             <p id="error-message-spf" class="error-message"></p>
             <div id="spfLoadingSpinner" class="loading-spinner"></div>
-
             <div id="spfResults" class="results">
                 <h2>SPF Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="spfTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="spfTableBody"></tbody>
                 </table>
-                <p style="font-size: 0.9em; color: #888; margin-top: 15px;">
-                    SPF records are TXT records starting with "v=spf1".
-                </p>
+                <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">SPF records are TXT records starting with "v=spf1".</p>
+            </div>
+            <div class="security-sub-section" style="text-align:left;">
+                <h2>SPF Record Generator</h2>
+                <p style="font-size:0.9em;color:#6b7280;margin-bottom:20px;">Build a syntactically correct SPF record by adding mechanisms below. The final record will always start with <code>v=spf1</code>.</p>
+                <form id="spfGeneratorForm">
+                    <div style="margin-bottom:15px;">
+                        <label for="spfGenDomain"><strong>Domain (optional)</strong></label>
+                        <input type="text" id="spfGenDomain" placeholder="example.com" style="width:100%;padding:14px;border-radius:14px;border:1px solid #e0e5f0;background:#f9fafc;margin-top:6px;">
+                    </div>
+                    <div id="spfMechanismsContainer"></div>
+                    <button type="button" id="addSpfMechanismBtn" style="margin-top:15px;background:#10b981;color:white;border:none;padding:12px 22px;border-radius:12px;cursor:pointer;font-weight:600;box-shadow:0 4px 12px rgba(16,185,129,0.2);">+ Add Mechanism</button>
+                    <button type="submit" class="input-group-button" style="margin-top:20px;width:100%;">Generate SPF Record</button>
+                </form>
+                <div id="spfGeneratorResult" style="display:none;margin-top:25px;">
+                    <h3>Generated SPF DNS Entry</h3>
+                    <p style="font-size:0.9em;color:#6b7280;">Add the following TXT record to your DNS:</p>
+                    <div class="generated-record-box" id="generatedSpfRecord"></div>
+                    <button class="copy-btn" id="copySpfRecordBtn">📋 Copy to Clipboard</button>
+                    <p id="spfCopyConfirmation" style="color:#10b981;margin-top:10px;display:none;">Copied!</p>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- DKIM Lookup Section -->
     <div id="dkimLookupSection" class="content-section">
         <div class="container">
             <h1>DKIM Record Lookup</h1>
@@ -448,30 +417,20 @@
                     <button type="submit" id="lookupDkimButton">Lookup DKIM</button>
                 </div>
             </form>
-            
             <p id="error-message-dkim" class="error-message"></p>
             <div id="dkimLoadingSpinner" class="loading-spinner"></div>
-
             <div id="dkimResults" class="results">
                 <h2>DKIM Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dkimTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="dkimTableBody"></tbody>
                 </table>
-                <p style="font-size: 0.9em; color: #888; margin-top: 15px;">
-                    DKIM records are TXT records found at `selector._domainkey.yourdomain.com`. This tool attempts common selectors.
-                </p>
+                <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">DKIM records are TXT records found at `selector._domainkey.yourdomain.com`. This tool attempts common selectors.</p>
             </div>
         </div>
     </div>
 
+    <!-- CNAME Lookup Section -->
     <div id="cnameLookupSection" class="content-section">
         <div class="container">
             <h1>CNAME Record Lookup</h1>
@@ -481,69 +440,49 @@
                     <button type="submit" id="lookupCnameButton">Lookup CNAME</button>
                 </div>
             </form>
-            
             <p id="error-message-cname" class="error-message"></p>
             <div id="cnameLoadingSpinner" class="loading-spinner"></div>
-
             <div id="cnameResults" class="results">
                 <h2>CNAME Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cnameTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="cnameTableBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- AAAA Lookup Section -->
     <div id="aaaaLookupSection" class="content-section">
         <div class="container">
             <h1>AAAA Record Lookup</h1>
-            <p style="font-size: 0.9em; color: #6c757d; margin-bottom: 20px;">IPv6 address only</p>
+            <p style="font-size:0.9em;color:#6b7280;margin-bottom:20px;">IPv6 address only</p>
             <form id="aaaaForm">
                 <div class="input-group">
                     <input type="text" id="aaaaDomainInput" placeholder="Enter a domain (e.g., google.com)">
                     <button type="submit" id="lookupAaaaButton">Lookup AAAA</button>
                 </div>
             </form>
-            
             <p id="error-message-aaaa" class="error-message"></p>
             <div id="aaaaLoadingSpinner" class="loading-spinner"></div>
-
             <div id="aaaaResults" class="results">
                 <h2>AAAA Records</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Record</th>
-                            <th>TTL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="aaaaTableBody">
-                        </tbody>
+                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
+                    <tbody id="aaaaTableBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- IP Leak Test Section -->
     <div id="ipLeakTestSection" class="content-section">
         <div class="container">
             <h1>IP Leak Test</h1>
-            <p style="font-size: 0.9em; color: #6c757d; margin-bottom: 20px;">
-                This test reveals your current public IP address to check for potential leaks.
-            </p>
+            <p style="font-size:0.9em;color:#6b7280;margin-bottom:20px;">This test reveals your current public IP address to check for potential leaks.</p>
             <button id="performIpLeakTestButton" class="input-group-button">Perform Leak Test</button>
-            
             <p id="error-message-ip-leak" class="error-message"></p>
             <div id="ipLeakTestLoadingSpinner" class="loading-spinner"></div>
-
             <div id="ipLeakTestResults" class="results">
                 <h2>Your Public IP Information</h2>
                 <p><strong>Detected IP Address:</strong> <span id="leak-ip-address"></span></p>
@@ -555,39 +494,10 @@
         </div>
     </div>
 
-    <div id="domainInfoSection" class="content-section">
-        <div class="container">
-            <h1>Domain Registration Information</h1>
-            <form id="domainInfoForm">
-                <div class="input-group">
-                    <input type="text" id="domainInfoInput" placeholder="Enter a domain (e.g., google.com)">
-                    <button type="submit" id="lookupDomainInfoButton">Lookup Info</button>
-                </div>
-            </form>
-            
-            <p id="error-message-domain-info" class="error-message"></p>
-            <div id="domainInfoLoadingSpinner" class="loading-spinner"></div>
-
-            <div id="domainInfoResults" class="results">
-                <h2>WHOIS Details</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Field</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody id="domainInfoTableBody">
-                        </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+    <!-- Security Checks Section -->
     <div id="securityChecksSection" class="content-section">
         <div class="container">
             <h1>Security Checks</h1>
-
             <div class="security-sub-section">
                 <h2>IP Security Check</h2>
                 <form id="ipSecurityForm">
@@ -596,20 +506,18 @@
                         <button type="submit" id="checkIpSecurityButton">Check IP Security</button>
                     </div>
                 </form>
-                
                 <p id="error-message-security-ip" class="error-message"></p>
                 <div id="ipSecurityLoadingSpinner" class="loading-spinner"></div>
-
                 <div id="ipSecurityResults" class="results">
                     <h3>IP Status</h3>
                     <p id="securityIpAddress"><strong>IP Address:</strong> <span></span></p>
                     <div id="securityStatusMessage" class="security-status"></div>
-                    <p><strong>VPN Detected:</strong> <span id="vpnStatus"></span></p>
-                    <p><strong>Proxy Detected:</strong> <span id="proxyStatus"></span></p>
-                    <p><strong>TOR Detected:</strong> <span id="torStatus"></span></p>
+                    <table>
+                        <thead><tr><th>Check</th><th>Result</th></tr></thead>
+                        <tbody id="ipSecurityTableBody"></tbody>
+                    </table>
                 </div>
             </div>
-
             <div class="security-sub-section">
                 <h2>Domain Security Check</h2>
                 <form id="domainSecurityForm">
@@ -618,164 +526,133 @@
                         <button type="submit" id="checkDomainSecurityButton">Check Domain Security</button>
                     </div>
                 </form>
-                
                 <p id="error-message-security-domain" class="error-message"></p>
                 <div id="domainSecurityLoadingSpinner" class="loading-spinner"></div>
-
                 <div id="domainSecurityResults" class="results">
                     <h3>Domain Status</h3>
                     <p><strong>Domain:</strong> <span id="checkedDomain"></span></p>
                     <div id="domainSecurityStatusMessage" class="security-status"></div>
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Check</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="domainSecurityTableBody">
-                            </tbody>
+                        <thead><tr><th>Check</th><th>Result</th></tr></thead>
+                        <tbody id="domainSecurityTableBody"></tbody>
                     </table>
-                    <p style="font-size: 0.9em; color: #888; margin-top: 15px;">
-                        Note: This check verifies domain resolvability and common record presence.
-                    </p>
+                    <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">Additional checks include DNS resolvability, basic record presence, and SSL/TLS certificate analysis (via SSL Labs).</p>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Speed Test Section -->
+    <div id="speedTestSection" class="content-section">
+        <div class="container">
+            <h1>Internet Speed Test</h1>
+            <p style="color: #6b7280; margin-bottom: 25px;">Measures ping, download, and upload speeds. Uses multiple servers for reliability.</p>
+            <button id="startSpeedTestBtn" class="input-group-button">Start Test</button>
+            <div id="speedTestLoadingSpinner" class="loading-spinner"></div>
+            <p id="error-message-speed" class="error-message"></p>
+
+            <div id="speedTestResults" class="results" style="text-align: center;">
+                <h2>Test Results</h2>
+                <div class="speed-cards">
+                    <div class="speed-card">
+                        <div class="speed-value" id="pingResult">--</div>
+                        <div class="speed-label">Ping (ms)</div>
+                    </div>
+                    <div class="speed-card">
+                        <div class="speed-value" id="downloadResult">--</div>
+                        <div class="speed-label">Download (Mbps)</div>
+                    </div>
+                    <div class="speed-card">
+                        <div class="speed-value" id="uploadResult">--</div>
+                        <div class="speed-label">Upload (Mbps)</div>
+                    </div>
+                </div>
+                <div class="server-info" id="serverInfoText">
+                    Download: cdnjs.cloudflare.com | Upload: auto-selected
+                </div>
+                <div class="geo-info" id="speedGeoLocation"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Know Your Lookup Section -->
     <div id="knowYourLookupSection" class="content-section">
         <div class="container" style="text-align: left;">
             <h1>Know Your Lookup</h1>
-            <p>This tool suite provides various ways to inspect and diagnose network information. Each section serves a unique purpose, from identifying where an IP address is located to checking a domain's email and security settings. Below is a brief explanation of each lookup type.</p>
-            <br>
-            <h3>IP Lookup</h3>
-            <p><strong>IP Lookup</strong> is used to find the geographical location (geolocation) and network information of an IP address. This can help you determine the country, city, and Internet Service Provider (ISP) associated with a specific IP.</p>
-            <br>
-            <h3>DNS Lookup</h3>
-            <p><strong>DNS Lookup</strong> is a powerful tool for querying the Domain Name System (DNS). DNS records are like a phonebook for the internet, translating human-readable domain names (like <code>google.com</code>) into machine-readable IP addresses. This tool will display various records, including A, AAAA, and TXT records. </p>
-            <br>
-            <h3>MX Lookup</h3>
-            <p>An <strong>MX Lookup</strong> queries a domain for its Mail Exchanger (MX) records. These records tell the internet which mail servers are responsible for accepting email on behalf of a domain. It is an essential step for diagnosing email delivery issues.</p>
-            <br>
-            <h3>DMARC, SPF, and DKIM</h3>
-            <p>These three lookups are crucial for email authentication and security. <strong>DMARC</strong> (Domain-based Message Authentication, Reporting, and Conformance), <strong>SPF</strong> (Sender Policy Framework), and <strong>DKIM</strong> (DomainKeys Identified Mail) records help prevent email spoofing and phishing by verifying that an email came from a legitimate source.</p>
-            <br>
-            <h3>CNAME and AAAA Lookup</h3>
-            <p>A <strong>CNAME Lookup</strong> is used to find canonical name records, which are aliases for other domains. For example, <code>www.example.com</code> might be a CNAME record pointing to <code>example.com</code>. An <strong>AAAA Lookup</strong> specifically finds the IPv6 address (the modern version of an IP address) for a domain.</p>
-            <br>
-            <h3>IP Leak Test</h3>
-            <p>An <strong>IP Leak Test</strong> checks if your connection is exposing your real IP address, especially when you are using a VPN or proxy. It is a simple but effective way to ensure your privacy tool is working correctly.</p>
-            <br>
-            <h3>Domain Info (WHOIS)</h3>
-            <p>The <strong>Domain Info</strong> lookup uses the WHOIS protocol to retrieve registration information for a domain name. This can include the registrar, registration and expiration dates, and contact information for the domain owner (if not protected by privacy services).</p>
-            <br>
-            <h3>Security Checks</h3>
-            <p>The <strong>Security Checks</strong> section provides a quick assessment of an IP address or domain. It checks an IP for associations with known VPNs, proxies, or TOR nodes, and it verifies a domain's basic record configuration to identify potential issues or signs of a non-functional site.</p>
+            <p style="color:#444; line-height:1.7; margin-bottom: 20px;">This suite offers a wide range of network tools. Here's what each tab helps you do:</p>
+            <h3>🌐 IP Lookup</h3><p>Find the geographical location and ISP of any IP address, or look up your own.</p>
+            <h3>🔍 DNS Lookup</h3><p>Retrieve A, AAAA, TXT, NS, and CNAME records for a domain.</p>
+            <h3>📧 MX Lookup</h3><p>Show mail exchange records and resolved IPs for email troubleshooting.</p>
+            <h3>🛡️ DMARC Suite</h3><p>Lookup and generate DMARC policies to protect against email spoofing.</p>
+            <h3>📨 SPF Suite</h3><p>Check or build SPF records to define authorised mail senders.</p>
+            <h3>🔑 DKIM</h3><p>Search for DKIM keys using common selector names.</p>
+            <h3>↪️ CNAME</h3><p>View canonical (alias) records for any hostname.</p>
+            <h3>🌍 AAAA</h3><p>Lookup IPv6 addresses for modern connectivity checks.</p>
+            <h3>🕵️ IP Leak Test</h3><p>Reveal your public IP to verify VPN/proxy effectiveness.</p>
+            <h3>🔒 Security Checks</h3><p>Check IP reputation (VPN/Proxy/Spamhaus) and domain SSL/DNS health.</p>
+            <h3>⚡ Speed Test</h3><p>Measure ping, download, and upload speeds with server and geo info.</p>
         </div>
     </div>
-	
-	<div id="aboutUsSection" class="content-section">
-        <div class="container" style="text-align: left;">
+
+    <!-- About Us Section -->
+    <div id="aboutUsSection" class="content-section">
+        <div class="container" style="text-align:left;">
             <h1>About Us</h1>
-            <p>Hi, I'm Ibtihaj Syed, a Systems Analyst with a strong foundation in Salesforce Administration and Microsoft 365 Administration, dedicated to streamlining digital workflows and enhancing user experiences. Over the years, I've developed a keen eye for diagnosing infrastructure issues and building tools that make technical tasks simpler and faster.</p>
-            <p>This DNS tools website is my way of sharing that expertise—offering reliable, easy-to-use utilities for IT professionals, developers, and curious minds alike. Whether you're troubleshooting DNS records or optimizing your domain setup, I hope these tools save you time and headaches.</p>
-            <p>Feel free to reach out with feedback, questions, or collaboration ideas. I’d love to hear from you!</p>
+            <p>Hi, I'm a Systems Analyst with expertise in Salesforce & Microsoft 365. This DNS toolkit is built to simplify network diagnostics and email authentication setup.</p>
             <p>📧 Contact: ipdnstools@gmail.com</p>
         </div>
     </div>
 
-
     <script>
-        // --- Helper functions for DOM manipulation and API calls ---
-        
-        /**
-         * Shows or hides a loading spinner and clears previous results/errors.
-         * @param {string} loadingSpinnerId - The ID of the loading spinner element.
-         * @param {string} resultsDivId - The ID of the results container.
-         * @param {string} errorMessageId - The ID of the error message container.
-         * @param {boolean} show - True to show the spinner, false to hide it.
-         */
+        // ---------- Helper functions ----------
         function toggleLoadingState(loadingSpinnerId, resultsDivId, errorMessageId, show) {
             document.getElementById(loadingSpinnerId).style.display = show ? 'block' : 'none';
             document.getElementById(resultsDivId).style.display = 'none';
             document.getElementById(errorMessageId).style.display = 'none';
         }
-
-        /**
-         * Displays an error message and logs the error to the console.
-         * @param {string} errorMessageId - The ID of the error message container.
-         * @param {string} message - The message to display.
-         * @param {Error|string} [error] - The error object to log.
-         */
         function displayError(errorMessageId, message, error) {
             const errorMessage = document.getElementById(errorMessageId);
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
             console.error('Fetch error:', error);
         }
-
-        /**
-         * Fetches DNS records from Cloudflare DNS over HTTPS.
-         * @param {string} name - The domain or subdomain to query.
-         * @param {string} type - The DNS record type (e.g., 'A', 'MX').
-         * @returns {Promise<object>} - The JSON response from the API.
-         */
         async function fetchDnsRecords(name, type) {
             const apiURL = `https://cloudflare-dns.com/dns-query?name=${name}&type=${type}`;
-            const response = await fetch(apiURL, {
-                headers: { 'Accept': 'application/dns-json' }
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            const response = await fetch(apiURL, { headers: { 'Accept': 'application/dns-json' } });
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
         }
-
-        /**
-         * Populates a table with DNS records.
-         * @param {HTMLTableSectionElement} tableBody - The tbody element to populate.
-         * @param {Array} records - An array of DNS record objects.
-         */
         function populateDnsTable(tableBody, records) {
             records.forEach(record => {
                 const row = tableBody.insertRow();
                 const typeCell = row.insertCell(0);
                 const recordCell = row.insertCell(1);
                 const ttlCell = row.insertCell(2);
-                
-                // Map numerical type to string representation
                 let recordTypeStr = '';
                 switch(record.type) {
                     case 1: recordTypeStr = 'A'; break;
-                    case 2: recordTypeStr = 'NS'; break; 
-                    case 5: recordTypeStr = 'CNAME'; break; 
+                    case 2: recordTypeStr = 'NS'; break;
+                    case 5: recordTypeStr = 'CNAME'; break;
                     case 15: recordTypeStr = 'MX'; break;
                     case 16: recordTypeStr = 'TXT'; break;
                     case 28: recordTypeStr = 'AAAA'; break;
-                    default: recordTypeStr = record.type; 
+                    default: recordTypeStr = record.type;
                 }
                 typeCell.textContent = recordTypeStr;
-                
-                // Remove trailing dot for some record types
-                recordCell.textContent = (record.type === 2 || record.type === 5 || record.type === 15) 
+                recordCell.textContent = (record.type === 2 || record.type === 5 || record.type === 15)
                     ? record.data.replace(/\.$/, '') : record.data;
-                
                 ttlCell.textContent = record.TTL;
             });
         }
-        
-        // --- Lookup Functions ---
 
+        // ---------- IP Lookup ----------
         async function performIpLookup(ipAddress) {
             toggleLoadingState('ipLoadingSpinner', 'ipResults', 'error-message-ip', true);
             const apiURL = ipAddress ? `https://ipinfo.io/${ipAddress}/json` : `https://ipinfo.io/json`;
-
             try {
                 const response = await fetch(apiURL);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-
                 if (data.error) {
                     displayError('error-message-ip', data.error.message || 'Error looking up IP address.', data.error);
                 } else {
@@ -794,53 +671,48 @@
                 document.getElementById('ipLoadingSpinner').style.display = 'none';
             }
         }
-        
+
+        // ---------- DNS Lookup ----------
         async function performDnsLookup(domain) {
             toggleLoadingState('dnsLoadingSpinner', 'dnsResults', 'error-message-dns', true);
             document.getElementById('dnsTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-dns', 'Please enter a domain name.');
                 document.getElementById('dnsLoadingSpinner').style.display = 'none';
                 return;
             }
-
             const recordTypes = ['A', 'AAAA', 'TXT', 'NS', 'CNAME'];
             const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
-
             try {
                 const allData = await Promise.all(fetchPromises);
                 let hasRecords = false;
-
                 allData.forEach(data => {
                     if (data.Answer && data.Answer.length > 0) {
                         hasRecords = true;
                         populateDnsTable(document.getElementById('dnsTableBody'), data.Answer);
                     }
                 });
-
                 if (hasRecords) {
                     document.getElementById('dnsResults').style.display = 'block';
                 } else {
                     displayError('error-message-dns', 'No DNS records found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-dns', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-dns', 'An error occurred.', error);
             } finally {
                 document.getElementById('dnsLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- MX Lookup ----------
         async function performMxLookup(domain) {
             toggleLoadingState('mxLoadingSpinner', 'mxResults', 'error-message-mx', true);
-            document.getElementById('mxTableBody').innerHTML = ''; 
-
+            document.getElementById('mxTableBody').innerHTML = '';
             if (!domain) {
                 displayError('error-message-mx', 'Please enter a domain name.');
                 document.getElementById('mxLoadingSpinner').style.display = 'none';
                 return;
             }
-
             try {
                 const data = await fetchDnsRecords(domain, 'MX');
                 if (data.Answer && data.Answer.length > 0) {
@@ -853,45 +725,41 @@
                             fetchDnsRecords(hostname, 'A').catch(() => ({ Answer: [] })),
                             fetchDnsRecords(hostname, 'AAAA').catch(() => ({ Answer: [] }))
                         ]).then(ipData => {
-                            const ips = ipData.flatMap(res => res.Answer || []).map(record => record.data);
+                            const ips = ipData.flatMap(res => res.Answer || []).map(r => r.data);
                             return { preference, hostname, ips: ips.join(', ') || 'N/A', ttl: mxTTL };
                         });
                     });
-
                     const mxRecordsWithIps = await Promise.all(ipLookupPromises);
-                    mxRecordsWithIps.forEach(record => {
+                    mxRecordsWithIps.forEach(rec => {
                         const row = document.getElementById('mxTableBody').insertRow();
-                        row.insertCell(0).textContent = record.preference;
-                        row.insertCell(1).textContent = record.hostname;
-                        row.insertCell(2).textContent = record.ips;
-                        row.insertCell(3).textContent = record.ttl;
+                        row.insertCell(0).textContent = rec.preference;
+                        row.insertCell(1).textContent = rec.hostname;
+                        row.insertCell(2).textContent = rec.ips;
+                        row.insertCell(3).textContent = rec.ttl;
                     });
                     document.getElementById('mxResults').style.display = 'block';
                 } else {
                     displayError('error-message-mx', 'No MX records found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-mx', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-mx', 'An error occurred.', error);
             } finally {
                 document.getElementById('mxLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- DMARC Lookup ----------
         async function performDmarcLookup(domain) {
             toggleLoadingState('dmarcLoadingSpinner', 'dmarcResults', 'error-message-dmarc', true);
             document.getElementById('dmarcTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-dmarc', 'Please enter a domain name.');
                 document.getElementById('dmarcLoadingSpinner').style.display = 'none';
                 return;
             }
-
-            const dmarcDomain = `_dmarc.${domain}`;
             try {
-                const data = await fetchDnsRecords(dmarcDomain, 'TXT');
+                const data = await fetchDnsRecords(`_dmarc.${domain}`, 'TXT');
                 const dmarcRecords = (data.Answer || []).filter(record => record.data.trim().startsWith('"v=DMARC1'));
-
                 if (dmarcRecords.length > 0) {
                     populateDnsTable(document.getElementById('dmarcTableBody'), dmarcRecords);
                     document.getElementById('dmarcResults').style.display = 'block';
@@ -899,26 +767,24 @@
                     displayError('error-message-dmarc', 'No DMARC record found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-dmarc', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-dmarc', 'An error occurred.', error);
             } finally {
                 document.getElementById('dmarcLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- SPF Lookup ----------
         async function performSpfLookup(domain) {
             toggleLoadingState('spfLoadingSpinner', 'spfResults', 'error-message-spf', true);
             document.getElementById('spfTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-spf', 'Please enter a domain name.');
                 document.getElementById('spfLoadingSpinner').style.display = 'none';
                 return;
             }
-
             try {
                 const data = await fetchDnsRecords(domain, 'TXT');
                 const spfRecords = (data.Answer || []).filter(record => record.data.trim().startsWith('"v=spf1'));
-
                 if (spfRecords.length > 0) {
                     populateDnsTable(document.getElementById('spfTableBody'), spfRecords);
                     document.getElementById('spfResults').style.display = 'block';
@@ -926,40 +792,34 @@
                     displayError('error-message-spf', 'No SPF record found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-spf', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-spf', 'An error occurred.', error);
             } finally {
                 document.getElementById('spfLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- DKIM Lookup ----------
         async function performDkimLookup(domain) {
             toggleLoadingState('dkimLoadingSpinner', 'dkimResults', 'error-message-dkim', true);
             document.getElementById('dkimTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-dkim', 'Please enter a domain name.');
                 document.getElementById('dkimLoadingSpinner').style.display = 'none';
                 return;
             }
-
             const commonSelectors = ['google', 's1', 's2', 'k1', 'default', 'mail', 'selector1', '2020'];
             let dkimFound = false;
-
             for (const selector of commonSelectors) {
-                const dkimDomain = `${selector}._domainkey.${domain}`;
                 try {
-                    const data = await fetchDnsRecords(dkimDomain, 'TXT');
+                    const data = await fetchDnsRecords(`${selector}._domainkey.${domain}`, 'TXT');
                     const dkimRecords = (data.Answer || []).filter(record => record.data.trim().startsWith('"v=DKIM1;'));
                     if (dkimRecords.length > 0) {
                         populateDnsTable(document.getElementById('dkimTableBody'), dkimRecords);
                         dkimFound = true;
                         break;
                     }
-                } catch (error) {
-                    console.error(`DKIM fetch error for ${dkimDomain}:`, error);
-                }
+                } catch (error) { console.error(`DKIM fetch error for ${selector}`, error); }
             }
-            
             if (dkimFound) {
                 document.getElementById('dkimResults').style.display = 'block';
             } else {
@@ -968,16 +828,15 @@
             document.getElementById('dkimLoadingSpinner').style.display = 'none';
         }
 
+        // ---------- CNAME Lookup ----------
         async function performCnameLookup(domain) {
             toggleLoadingState('cnameLoadingSpinner', 'cnameResults', 'error-message-cname', true);
             document.getElementById('cnameTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-cname', 'Please enter a domain or subdomain name.');
                 document.getElementById('cnameLoadingSpinner').style.display = 'none';
                 return;
             }
-
             try {
                 const data = await fetchDnsRecords(domain, 'CNAME');
                 if (data.Answer && data.Answer.length > 0) {
@@ -987,22 +846,21 @@
                     displayError('error-message-cname', 'No CNAME record found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-cname', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-cname', 'An error occurred.', error);
             } finally {
                 document.getElementById('cnameLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- AAAA Lookup ----------
         async function performAaaaLookup(domain) {
             toggleLoadingState('aaaaLoadingSpinner', 'aaaaResults', 'error-message-aaaa', true);
             document.getElementById('aaaaTableBody').innerHTML = '';
-
             if (!domain) {
                 displayError('error-message-aaaa', 'Please enter a domain name.');
                 document.getElementById('aaaaLoadingSpinner').style.display = 'none';
                 return;
             }
-
             try {
                 const data = await fetchDnsRecords(domain, 'AAAA');
                 if (data.Answer && data.Answer.length > 0) {
@@ -1012,231 +870,398 @@
                     displayError('error-message-aaaa', 'No AAAA record found for this domain.');
                 }
             } catch (error) {
-                displayError('error-message-aaaa', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-aaaa', 'An error occurred.', error);
             } finally {
                 document.getElementById('aaaaLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- IP Leak Test ----------
         async function performIpLeakTest() {
             toggleLoadingState('ipLeakTestLoadingSpinner', 'ipLeakTestResults', 'error-message-ip-leak', true);
-            
             try {
                 const ipResponse = await fetch('https://ipinfo.io/json');
                 if (!ipResponse.ok) throw new Error(`HTTP error! status: ${ipResponse.status}`);
                 const ipData = await ipResponse.json();
-
                 if (ipData.error) {
                     displayError('error-message-ip-leak', ipData.error.message || 'Error performing IP leak test.', ipData.error);
                     return;
                 }
-
                 document.getElementById('leak-ip-address').textContent = ipData.ip || 'N/A';
                 document.getElementById('leak-country').textContent = ipData.country || 'N/A';
                 document.getElementById('leak-city').textContent = ipData.city || 'N/A';
                 document.getElementById('leak-isp').textContent = ipData.org || 'N/A';
-
-                // Reverse DNS lookup for hostname
                 let hostname = 'N/A';
                 if (ipData.ip) {
                     let reversedIp = ipData.ip.split('.').reverse().join('.');
-                    const dnsApiURL = `https://cloudflare-dns.com/dns-query?name=${reversedIp}.in-addr.arpa&type=PTR`;
                     try {
-                        const dnsResponse = await fetch(dnsApiURL, { headers: { 'Accept': 'application/dns-json' }});
+                        const dnsResponse = await fetch(`https://cloudflare-dns.com/dns-query?name=${reversedIp}.in-addr.arpa&type=PTR`, { headers: { 'Accept': 'application/dns-json' }});
                         if (dnsResponse.ok) {
                             const dnsData = await dnsResponse.json();
                             if (dnsData.Answer && dnsData.Answer.length > 0) {
                                 hostname = dnsData.Answer[0].data.replace(/\.$/, '');
                             }
                         }
-                    } catch (dnsError) {
-                        console.error('Reverse DNS lookup error:', dnsError);
-                    }
+                    } catch (dnsError) { console.error('Reverse DNS error:', dnsError); }
                 }
                 document.getElementById('leak-hostname').textContent = hostname;
                 document.getElementById('ipLeakTestResults').style.display = 'block';
-
             } catch (error) {
-                displayError('error-message-ip-leak', 'An error occurred. Please check your connection.', error);
+                displayError('error-message-ip-leak', 'An error occurred.', error);
             } finally {
                 document.getElementById('ipLeakTestLoadingSpinner').style.display = 'none';
             }
         }
 
-        async function performDomainInfoLookup(domain) {
-            toggleLoadingState('domainInfoLoadingSpinner', 'domainInfoResults', 'error-message-domain-info', true);
-            document.getElementById('domainInfoTableBody').innerHTML = '';
-
-            if (!domain) {
-                displayError('error-message-domain-info', 'Please enter a domain name.');
-                document.getElementById('domainInfoLoadingSpinner').style.display = 'none';
-                return;
-            }
-
-            // Using the new 'who-dat.as93.net' API as an alternative
-            const apiURL = `https://who-dat.as93.net/${domain}`;
-            try {
-                const response = await fetch(apiURL);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-
-                if (data.error) {
-                    displayError('error-message-domain-info', data.error || 'Could not retrieve WHOIS information for this domain.');
-                } else {
-                    const infoToShow = {
-                        "Domain Name": data.domain_name,
-                        "Registrar": data.registrar,
-                        "Created Date": data.creation_date,
-                        "Updated Date": data.updated_date,
-                        "Expiration Date": data.expiration_date,
-                        "Name Servers": (data.name_servers || []).join(', '),
-                        "Registrar URL": data.registrar_url
-                    };
-                    
-                    if (data.registrant) {
-                        infoToShow["Registrant Name"] = data.registrant.name;
-                        infoToShow["Registrant Organization"] = data.registrant.organization;
-                        infoToShow["Registrant Email"] = data.registrant.email;
-                        infoToShow["Registrant Country"] = data.registrant.country;
-                    }
-
-                    for (const key in infoToShow) {
-                        if (infoToShow[key]) {
-                            const row = document.getElementById('domainInfoTableBody').insertRow();
-                            row.insertCell(0).textContent = key;
-                            row.insertCell(1).textContent = infoToShow[key];
-                        }
-                    }
-                    document.getElementById('domainInfoResults').style.display = 'block';
-                }
-            } catch (error) {
-                displayError('error-message-domain-info', 'Unable to retrieve DNS information. Please check back later for updates.', error);
-            } finally {
-                document.getElementById('domainInfoLoadingSpinner').style.display = 'none';
-            }
-        }
-
+        // ---------- IP Security Check ----------
         async function performIpSecurityCheck(ipAddress) {
             toggleLoadingState('ipSecurityLoadingSpinner', 'ipSecurityResults', 'error-message-security-ip', true);
-            const securityStatusMessage = document.getElementById('securityStatusMessage');
-            securityStatusMessage.className = 'security-status';
-
+            const tbody = document.getElementById('ipSecurityTableBody');
+            tbody.innerHTML = '';
             if (!ipAddress) {
                 displayError('error-message-security-ip', 'Please enter an IP address.');
                 document.getElementById('ipSecurityLoadingSpinner').style.display = 'none';
                 return;
             }
-
-            const apiURL = `https://ipinfo.io/${ipAddress}/json`;
             try {
-                const response = await fetch(apiURL);
+                const response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-
                 if (data.error) {
                     displayError('error-message-security-ip', data.error.message || 'Error checking IP security.', data.error);
-                } else {
-                    document.querySelector('#securityIpAddress span').textContent = data.ip || 'N/A';
-                    document.getElementById('vpnStatus').textContent = data.vpn ? 'Yes' : 'No';
-                    document.getElementById('proxyStatus').textContent = data.proxy ? 'Yes' : 'No';
-                    document.getElementById('torStatus').textContent = data.tor ? 'Yes' : 'No';
-
-                    if (data.vpn || data.proxy || data.tor) {
-                        securityStatusMessage.textContent = 'This IP is associated with a VPN, Proxy, or TOR exit node.';
-                        securityStatusMessage.classList.add('warning');
-                    } else {
-                        securityStatusMessage.textContent = 'This IP appears to be clean (not associated with known VPN/Proxy/TOR).';
-                        securityStatusMessage.classList.add('safe');
-                    }
-                    document.getElementById('ipSecurityResults').style.display = 'block';
+                    return;
                 }
+                document.querySelector('#securityIpAddress span').textContent = data.ip || 'N/A';
+                const securityStatusMessage = document.getElementById('securityStatusMessage');
+                securityStatusMessage.textContent = '';
+                securityStatusMessage.className = 'security-status';
+                function addCheckRow(checkName, result, isWarning = false) {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = checkName;
+                    const resCell = row.insertCell(1);
+                    resCell.textContent = result;
+                    resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+                }
+                addCheckRow('VPN Detected', data.vpn ? 'Yes' : 'No', data.vpn);
+                addCheckRow('Proxy Detected', data.proxy ? 'Yes' : 'No', data.proxy);
+                addCheckRow('TOR Detected', data.tor ? 'Yes' : 'No', data.tor);
+                let spamhausStatus = 'Checking...';
+                let spamhausListed = false;
+                try {
+                    const rev = ipAddress.split('.').reverse().join('.');
+                    const dnsData = await fetchDnsRecords(`${rev}.zen.spamhaus.org`, 'A');
+                    if (dnsData.Answer && dnsData.Answer.length > 0) {
+                        spamhausListed = dnsData.Answer.some(r => r.data.startsWith('127.0.0.'));
+                        spamhausStatus = spamhausListed ? 'Listed on Spamhaus Zen' : 'Not listed (clean)';
+                    } else {
+                        spamhausStatus = 'Not listed (clean)';
+                    }
+                } catch (e) { spamhausStatus = 'Error'; }
+                addCheckRow('Spamhaus Zen Blacklist', spamhausStatus, spamhausListed);
+                if (data.vpn || data.proxy || data.tor || spamhausListed) {
+                    securityStatusMessage.textContent = 'This IP shows potential risks (VPN/Proxy/TOR or blacklist).';
+                    securityStatusMessage.classList.add('warning');
+                } else {
+                    securityStatusMessage.textContent = 'This IP appears to be clean (no known VPN/Proxy/TOR and not on Spamhaus Zen).';
+                    securityStatusMessage.classList.add('safe');
+                }
+                document.getElementById('ipSecurityResults').style.display = 'block';
             } catch (error) {
-                displayError('error-message-security-ip', 'An error occurred. Please check your connection or the IP address.', error);
+                displayError('error-message-security-ip', 'An error occurred.', error);
             } finally {
                 document.getElementById('ipSecurityLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- Domain Security Check ----------
         async function performDomainSecurityCheck(domain) {
             toggleLoadingState('domainSecurityLoadingSpinner', 'domainSecurityResults', 'error-message-security-domain', true);
-            const domainSecurityStatusMessage = document.getElementById('domainSecurityStatusMessage');
-            const domainSecurityTableBody = document.getElementById('domainSecurityTableBody');
-            domainSecurityStatusMessage.className = 'security-status';
-            domainSecurityTableBody.innerHTML = '';
-
+            const tbody = document.getElementById('domainSecurityTableBody');
+            tbody.innerHTML = '';
             if (!domain) {
                 displayError('error-message-security-domain', 'Please enter a domain name.');
                 document.getElementById('domainSecurityLoadingSpinner').style.display = 'none';
                 return;
             }
-
             document.getElementById('checkedDomain').textContent = domain;
+            const securityStatusMessage = document.getElementById('domainSecurityStatusMessage');
+            securityStatusMessage.textContent = '';
+            securityStatusMessage.className = 'security-status';
+            function addCheckRow(checkName, result, isWarning = false) {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = checkName;
+                const resCell = row.insertCell(1);
+                resCell.textContent = result;
+                resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+            }
             const recordTypes = ['A', 'AAAA', 'MX', 'TXT', 'NS', 'CNAME'];
             const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
-
+            let hasAnyRecords = false, suspiciousCount = 0;
             try {
                 const allData = await Promise.all(fetchPromises);
-                let hasAnyRecords = false;
-                let suspiciousCount = 0;
+                const a = allData[0].Answer || [], aaaa = allData[1].Answer || [];
+                if (a.length || aaaa.length) { addCheckRow('A/AAAA Records Found', 'Yes', false); hasAnyRecords = true; }
+                else { addCheckRow('A/AAAA Records Found', 'No', true); suspiciousCount++; }
+                const mx = allData[2].Answer || [];
+                addCheckRow('MX Records Found', mx.length ? 'Yes' : 'No', mx.length === 0);
+                if (!mx.length) suspiciousCount++;
+                const txt = allData[3].Answer || [];
+                addCheckRow('TXT Records Found', txt.length ? 'Yes' : 'No', false);
+                const ns = allData[4].Answer || [];
+                addCheckRow('NS Records Found', ns.length ? 'Yes' : 'No', ns.length === 0);
+                if (!ns.length) suspiciousCount++;
+                if (ns.length) hasAnyRecords = true;
+                const cname = allData[5].Answer || [];
+                addCheckRow('CNAME Records Found', cname.length ? 'Yes' : 'No', false);
 
-                const checkStatus = (recordData, checkName, isWarning = false) => {
-                    const status = (recordData && recordData.length > 0) ? 'Yes' : 'No';
-                    if (status === 'No' && isWarning) {
-                        suspiciousCount++;
-                    }
-                    const row = domainSecurityTableBody.insertRow();
-                    row.insertCell(0).textContent = checkName;
-                    const statusCell = row.insertCell(1);
-                    statusCell.textContent = status;
-                    statusCell.style.color = (status === 'No' && isWarning) ? '#e74c3c' : '#27ae60';
-                };
+                let sslGrade = 'Checking...', sslValidUntil = 'Checking...', sslIssuer = 'Checking...';
+                try {
+                    const sslRes = await fetch(`https://api.ssllabs.com/api/v3/analyze?host=${domain}&publish=off&startNew=off&fromCache=on&maxAge=24`);
+                    if (sslRes.ok) {
+                        const sslData = await sslRes.json();
+                        if (sslData.status === 'READY' || sslData.status === 'IN_PROGRESS') {
+                            if (sslData.endpoints && sslData.endpoints.length > 0) {
+                                const ep = sslData.endpoints[0];
+                                sslGrade = ep.grade || 'N/A';
+                                if (ep.serverName) sslIssuer = ep.serverName;
+                                if (ep.details && ep.details.cert) {
+                                    sslValidUntil = ep.details.cert.notAfter || 'N/A';
+                                    if (ep.details.cert.issuerSubject) sslIssuer = ep.details.cert.issuerSubject;
+                                }
+                            } else sslGrade = 'No endpoints';
+                        } else sslGrade = 'Analysis pending';
+                    } else sslGrade = 'API error';
+                } catch (e) { sslGrade = sslValidUntil = sslIssuer = 'Check failed'; }
+                addCheckRow('SSL/TLS Grade', sslGrade, false);
+                addCheckRow('SSL Certificate Valid Until', sslValidUntil, false);
+                addCheckRow('SSL Certificate Issuer', sslIssuer, false);
 
-                const aRecords = allData[0].Answer || [];
-                const aaaaRecords = allData[1].Answer || [];
-                if (aRecords.length > 0 || aaaaRecords.length > 0) {
-                    checkStatus(aRecords.concat(aaaaRecords), 'A/AAAA Records Found', false);
-                    hasAnyRecords = true;
+                if (hasAnyRecords && suspiciousCount === 0 && sslGrade !== 'Check failed') {
+                    securityStatusMessage.textContent = 'Domain appears to be legitimate and well-configured.';
+                    securityStatusMessage.classList.add('safe');
+                } else if (hasAnyRecords || sslGrade !== 'Check failed') {
+                    securityStatusMessage.textContent = 'Domain has some records but shows potential configuration issues.';
+                    securityStatusMessage.classList.add('warning');
                 } else {
-                    checkStatus([], 'A/AAAA Records Found', true);
+                    securityStatusMessage.textContent = 'Domain does not appear to resolve. Could be inactive or suspicious.';
+                    securityStatusMessage.classList.add('warning');
                 }
-
-                const mxRecords = allData[2].Answer || [];
-                checkStatus(mxRecords, 'MX Records Found', true);
-
-                const txtRecords = allData[3].Answer || [];
-                checkStatus(txtRecords, 'TXT Records Found', false);
-
-                const nsRecords = allData[4].Answer || [];
-                checkStatus(nsRecords, 'NS Records Found', true);
-                if (nsRecords.length > 0) hasAnyRecords = true;
-
-                const cnameRecords = allData[5].Answer || [];
-                checkStatus(cnameRecords, 'CNAME Records Found', false);
-                
-                if (hasAnyRecords && suspiciousCount === 0) {
-                    domainSecurityStatusMessage.textContent = 'Domain appears to be legitimate and well-configured.';
-                    domainSecurityStatusMessage.classList.add('safe');
-                } else if (hasAnyRecords && suspiciousCount > 0) {
-                    domainSecurityStatusMessage.textContent = 'Domain has some records but shows potential configuration issues.';
-                    domainSecurityStatusMessage.classList.add('warning');
-                } else {
-                    domainSecurityStatusMessage.textContent = 'Domain does not appear to resolve or has no common records. Could be inactive or suspicious.';
-                    domainSecurityStatusMessage.classList.add('warning');
-                }
-                
                 document.getElementById('domainSecurityResults').style.display = 'block';
-
             } catch (error) {
-                displayError('error-message-security-domain', 'An error occurred. Please check your connection or the domain name.', error);
+                displayError('error-message-security-domain', 'An error occurred.', error);
             } finally {
                 document.getElementById('domainSecurityLoadingSpinner').style.display = 'none';
             }
         }
 
+        // ---------- DMARC Generator ----------
+        function generateDmarcRecord() {
+            const domain = document.getElementById('dmarcGenDomain').value.trim();
+            const p = document.getElementById('dmarcGenPolicy').value;
+            const sp = document.getElementById('dmarcGenSubPolicy').value;
+            const pct = document.getElementById('dmarcGenPct').value;
+            const rua = document.getElementById('dmarcGenRua').value.trim();
+            const ruf = document.getElementById('dmarcGenRuf').value.trim();
+            const adkim = document.getElementById('dmarcGenAdkim').value;
+            const aspf = document.getElementById('dmarcGenAspf').value;
+            const fo = document.getElementById('dmarcGenFo').value;
+            const rf = document.getElementById('dmarcGenRf').value.trim();
+            const ri = document.getElementById('dmarcGenRi').value;
+            let recordValue = 'v=DMARC1; p=' + p;
+            if (sp) recordValue += '; sp=' + sp;
+            if (pct && pct !== '100') recordValue += '; pct=' + pct;
+            if (rua) recordValue += '; rua=' + rua;
+            if (ruf) recordValue += '; ruf=' + ruf;
+            recordValue += '; adkim=' + adkim + '; aspf=' + aspf;
+            if (fo) recordValue += '; fo=' + fo;
+            if (rf) recordValue += '; rf=' + rf;
+            if (ri) recordValue += '; ri=' + ri;
+            return domain ? `_dmarc.${domain} TXT "${recordValue}"` : `TXT "${recordValue}" (no domain specified)`;
+        }
+        document.getElementById('dmarcGeneratorForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('generatedDmarcRecord').textContent = generateDmarcRecord();
+            document.getElementById('dmarcGeneratorResult').style.display = 'block';
+            document.getElementById('copyConfirmation').style.display = 'none';
+        });
+        document.getElementById('copyDmarcRecordBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(document.getElementById('generatedDmarcRecord').textContent).then(() => {
+                document.getElementById('copyConfirmation').style.display = 'block';
+                setTimeout(() => document.getElementById('copyConfirmation').style.display = 'none', 2000);
+            });
+        });
 
-        // --- Navigation Logic ---
+        // ---------- SPF Generator ----------
+        const mechanismContainer = document.getElementById('spfMechanismsContainer');
+        function createMechanismRow(data = {}) {
+            const row = document.createElement('div');
+            row.className = 'mechanism-row';
+            row.innerHTML = `
+                <select class="qualifier-select">
+                    <option value="+">+ (pass)</option>
+                    <option value="-">- (fail)</option>
+                    <option value="~">~ (softfail)</option>
+                    <option value="?">? (neutral)</option>
+                </select>
+                <select class="mechanism-type-select">
+                    <option value="include">include</option>
+                    <option value="a">a</option>
+                    <option value="mx">mx</option>
+                    <option value="ptr">ptr</option>
+                    <option value="ip4">ip4</option>
+                    <option value="ip6">ip6</option>
+                    <option value="exists">exists</option>
+                    <option value="redirect">redirect</option>
+                    <option value="exp">exp</option>
+                    <option value="all">all</option>
+                </select>
+                <input type="text" class="mechanism-value-input" placeholder="value (domain, IP, etc.)">
+                <button type="button" class="remove-mech-btn">✕</button>
+            `;
+            const qualifier = row.querySelector('.qualifier-select');
+            const typeSelect = row.querySelector('.mechanism-type-select');
+            const valueInput = row.querySelector('.mechanism-value-input');
+            const removeBtn = row.querySelector('.remove-mech-btn');
+            if (data.qualifier) qualifier.value = data.qualifier;
+            if (data.type) typeSelect.value = data.type;
+            if (data.value) valueInput.value = data.value;
+            function toggleFields() {
+                const type = typeSelect.value;
+                if (type === 'redirect' || type === 'exp') {
+                    qualifier.style.display = 'none';
+                } else {
+                    qualifier.style.display = 'inline-block';
+                }
+                if (type === 'all') {
+                    valueInput.style.display = 'none';
+                } else {
+                    valueInput.style.display = 'inline-block';
+                }
+            }
+            typeSelect.addEventListener('change', toggleFields);
+            toggleFields();
+            removeBtn.addEventListener('click', () => row.remove());
+            return row;
+        }
+        mechanismContainer.appendChild(createMechanismRow());
+        document.getElementById('addSpfMechanismBtn').addEventListener('click', () => mechanismContainer.appendChild(createMechanismRow()));
+        function generateSpfRecord() {
+            const domain = document.getElementById('spfGenDomain').value.trim();
+            const rows = mechanismContainer.querySelectorAll('.mechanism-row');
+            let mechanisms = [];
+            rows.forEach(row => {
+                const type = row.querySelector('.mechanism-type-select').value;
+                const qualifier = row.querySelector('.qualifier-select').value;
+                const value = row.querySelector('.mechanism-value-input').value.trim();
+                const qual = (qualifier === '+') ? '' : qualifier;
+                let part = '';
+                if (type === 'all') part = qual + 'all';
+                else if (type === 'redirect' || type === 'exp') part = type + '=' + value;
+                else if (type === 'include' || type === 'a' || type === 'mx' || type === 'ptr' || type === 'exists')
+                    part = qual + type + (value ? ':' + value : '');
+                else if (type === 'ip4' || type === 'ip6') part = qual + type + ':' + value;
+                if (part) mechanisms.push(part);
+            });
+            const recordValue = 'v=spf1 ' + mechanisms.join(' ');
+            return domain ? `${domain} TXT "${recordValue}"` : `TXT "${recordValue}" (no domain specified)`;
+        }
+        document.getElementById('spfGeneratorForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('generatedSpfRecord').textContent = generateSpfRecord();
+            document.getElementById('spfGeneratorResult').style.display = 'block';
+            document.getElementById('spfCopyConfirmation').style.display = 'none';
+        });
+        document.getElementById('copySpfRecordBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(document.getElementById('generatedSpfRecord').textContent).then(() => {
+                document.getElementById('spfCopyConfirmation').style.display = 'block';
+                setTimeout(() => document.getElementById('spfCopyConfirmation').style.display = 'none', 2000);
+            });
+        });
+
+        // ---------- Speed Test (robust, multiple upload endpoints) ----------
+        async function performSpeedTest() {
+            const startBtn = document.getElementById('startSpeedTestBtn');
+            const spinner = document.getElementById('speedTestLoadingSpinner');
+            const resultsDiv = document.getElementById('speedTestResults');
+            const errorMsg = document.getElementById('error-message-speed');
+            const geoDiv = document.getElementById('speedGeoLocation');
+            const serverInfo = document.getElementById('serverInfoText');
+
+            startBtn.disabled = true;
+            spinner.style.display = 'block';
+            resultsDiv.style.display = 'none';
+            errorMsg.style.display = 'none';
+            geoDiv.textContent = '';
+            serverInfo.textContent = 'Download: cdnjs.cloudflare.com | Upload: testing...';
+
+            const downloadFile = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+            const uploadEndpoints = ['https://postman-echo.com/post', 'https://httpbin.org/post'];
+            const uploadSizeBytes = 50_000;
+            const timeoutMs = 15_000;
+
+            const fetchWithTimeout = (url, options = {}) => {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), timeoutMs);
+                return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+            };
+
+            try {
+                let geoText = '';
+                try {
+                    const geoRes = await fetchWithTimeout('https://ipinfo.io/json');
+                    if (geoRes.ok) {
+                        const geoData = await geoRes.json();
+                        geoText = `📍 ${geoData.city || 'Unknown'}, ${geoData.country || 'Unknown'}`;
+                    } else geoText = '📍 Location unavailable';
+                } catch (e) { geoText = '📍 Location unavailable'; }
+                geoDiv.textContent = geoText;
+
+                const pingStart = performance.now();
+                await fetchWithTimeout(downloadFile, { method: 'HEAD', cache: 'no-store' });
+                const pingMs = Math.round(performance.now() - pingStart);
+
+                const dlStart = performance.now();
+                const dlResponse = await fetchWithTimeout(downloadFile, { cache: 'no-store' });
+                if (!dlResponse.ok) throw new Error('Download failed');
+                const dlBlob = await dlResponse.blob();
+                const dlEnd = performance.now();
+                const dlDuration = (dlEnd - dlStart) / 1000;
+                const dlSpeed = ((dlBlob.size * 8) / 1_000_000 / dlDuration).toFixed(2);
+
+                let ulSpeed = 'Unavailable';
+                let usedServer = '';
+                const randomBytes = new Uint8Array(uploadSizeBytes);
+                crypto.getRandomValues(randomBytes);
+                const uploadBlob = new Blob([randomBytes], { type: 'application/octet-stream' });
+
+                for (const endpoint of uploadEndpoints) {
+                    try {
+                        const ulStart = performance.now();
+                        const ulResponse = await fetchWithTimeout(endpoint, { method: 'POST', body: uploadBlob, cache: 'no-store' });
+                        if (!ulResponse.ok) continue;
+                        const ulEnd = performance.now();
+                        const ulDuration = (ulEnd - ulStart) / 1000;
+                        ulSpeed = ((uploadSizeBytes * 8) / 1_000_000 / ulDuration).toFixed(2);
+                        usedServer = endpoint.replace('https://', '').split('/')[0];
+                        break;
+                    } catch (e) { }
+                }
+                serverInfo.textContent = `Download: cdnjs.cloudflare.com | Upload: ${usedServer || 'unavailable'}`;
+
+                document.getElementById('pingResult').textContent = pingMs;
+                document.getElementById('downloadResult').textContent = dlSpeed;
+                document.getElementById('uploadResult').textContent = ulSpeed;
+                resultsDiv.style.display = 'block';
+            } catch (error) {
+                displayError('error-message-speed', 'Speed test failed. Please try again.', error);
+            } finally {
+                spinner.style.display = 'none';
+                startBtn.disabled = false;
+            }
+        }
+        document.getElementById('startSpeedTestBtn').addEventListener('click', performSpeedTest);
+
+        // ---------- Navigation ----------
         const sections = {
             ipLookupSection: 'showIpLookup',
             dnsLookupSection: 'showDnsLookup',
@@ -1247,108 +1272,38 @@
             cnameLookupSection: 'showCnameLookup',
             aaaaLookupSection: 'showAaaaLookup',
             ipLeakTestSection: 'showIpLeakTest',
-            domainInfoSection: 'showDomainInfo',
             securityChecksSection: 'showSecurityChecks',
+            speedTestSection: 'showSpeedTest',
             knowYourLookupSection: 'showKnowYourLookup',
-			aboutUsSection: 'showAboutUs'
+            aboutUsSection: 'showAboutUs'
         };
 
-        function showSection(sectionId) {
-            for (const id in sections) {
-                document.getElementById(id).style.display = 'none';
-                document.getElementById(sections[id]).classList.remove('active');
+        function showSection(id) {
+            for (const sec in sections) {
+                document.getElementById(sec).style.display = 'none';
+                document.getElementById(sections[sec]).classList.remove('active');
             }
-            document.getElementById(sectionId).style.display = 'block';
-            document.getElementById(sections[sectionId]).classList.add('active');
+            document.getElementById(id).style.display = 'block';
+            document.getElementById(sections[id]).classList.add('active');
         }
-
-        // Initial display: show IP Lookup section by default
         showSection('ipLookupSection');
-
-        // Event listeners for navigation buttons
         for (const id in sections) {
             document.getElementById(sections[id]).addEventListener('click', () => showSection(id));
         }
 
-        // --- Event listeners for forms/buttons ---
-        document.getElementById('ipForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const ipAddress = document.getElementById('ipInput').value.trim();
-            performIpLookup(ipAddress);
-        });
-
-        document.getElementById('findMyIpLink').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('ipInput').value = '';
-            performIpLookup('');
-        });
-        
-        document.getElementById('dnsForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('dnsInput').value.trim();
-            performDnsLookup(domain);
-        });
-
-        document.getElementById('mxForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('mxDomainInput').value.trim();
-            performMxLookup(domain);
-        });
-
-        document.getElementById('dmarcForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('dmarcDomainInput').value.trim();
-            performDmarcLookup(domain);
-        });
-
-        document.getElementById('spfForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('spfDomainInput').value.trim();
-            performSpfLookup(domain);
-        });
-
-        document.getElementById('dkimForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('dkimDomainInput').value.trim();
-            performDkimLookup(domain);
-        });
-
-        document.getElementById('cnameForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('cnameDomainInput').value.trim();
-            performCnameLookup(domain);
-        });
-
-        document.getElementById('aaaaForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('aaaaDomainInput').value.trim();
-            performAaaaLookup(domain);
-        });
-
-        document.getElementById('performIpLeakTestButton').addEventListener('click', (e) => {
-            e.preventDefault();
-            performIpLeakTest();
-        });
-
-        document.getElementById('domainInfoForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('domainInfoInput').value.trim();
-            performDomainInfoLookup(domain);
-        });
-
-        document.getElementById('ipSecurityForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const ipAddress = document.getElementById('securityIpInput').value.trim();
-            performIpSecurityCheck(ipAddress);
-        });
-
-        document.getElementById('domainSecurityForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const domain = document.getElementById('securityDomainInput').value.trim();
-            performDomainSecurityCheck(domain);
-        });
+        // ---------- Form event listeners ----------
+        document.getElementById('ipForm').addEventListener('submit', (e) => { e.preventDefault(); performIpLookup(document.getElementById('ipInput').value.trim()); });
+        document.getElementById('findMyIpLink').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('ipInput').value = ''; performIpLookup(''); });
+        document.getElementById('dnsForm').addEventListener('submit', (e) => { e.preventDefault(); performDnsLookup(document.getElementById('dnsInput').value.trim()); });
+        document.getElementById('mxForm').addEventListener('submit', (e) => { e.preventDefault(); performMxLookup(document.getElementById('mxDomainInput').value.trim()); });
+        document.getElementById('dmarcForm').addEventListener('submit', (e) => { e.preventDefault(); performDmarcLookup(document.getElementById('dmarcDomainInput').value.trim()); });
+        document.getElementById('spfForm').addEventListener('submit', (e) => { e.preventDefault(); performSpfLookup(document.getElementById('spfDomainInput').value.trim()); });
+        document.getElementById('dkimForm').addEventListener('submit', (e) => { e.preventDefault(); performDkimLookup(document.getElementById('dkimDomainInput').value.trim()); });
+        document.getElementById('cnameForm').addEventListener('submit', (e) => { e.preventDefault(); performCnameLookup(document.getElementById('cnameDomainInput').value.trim()); });
+        document.getElementById('aaaaForm').addEventListener('submit', (e) => { e.preventDefault(); performAaaaLookup(document.getElementById('aaaaDomainInput').value.trim()); });
+        document.getElementById('performIpLeakTestButton').addEventListener('click', (e) => { e.preventDefault(); performIpLeakTest(); });
+        document.getElementById('ipSecurityForm').addEventListener('submit', (e) => { e.preventDefault(); performIpSecurityCheck(document.getElementById('securityIpInput').value.trim()); });
+        document.getElementById('domainSecurityForm').addEventListener('submit', (e) => { e.preventDefault(); performDomainSecurityCheck(document.getElementById('securityDomainInput').value.trim()); });
     </script>
 </body>
 </html>
-
-
