@@ -5,7 +5,7 @@
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 🆕 Blue Omega Favicon (browser tab icon) -->
+    <!-- Blue Omega Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231e3a8a'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial, sans-serif'%3E%CE%A9%3C/text%3E%3C/svg%3E">
     <!-- SEO & Open Graph -->
     <meta name="description" content="Free IP & DNS Lookup Tool. Check DNS records (MX, SPF, DMARC, DKIM), run security checks, and test internet speed. Analyze IP geolocation and domain health.">
@@ -13,7 +13,7 @@
     <meta property="og:description" content="Free IP & DNS Lookup Tool. Check DNS records, security, and speed.">
     <meta property="og:type" content="website">
     <title>IP & DNS Lookup Tool</title>
-    <!-- Google Font with display=swap for better performance -->
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,8 +29,6 @@
             color: #1a1a2e;
             padding: 0 15px 30px;
         }
-
-        /* Blue Top Bar – full width, tabs wrap */
         .blue-bar {
             width: 100%;
             background: linear-gradient(135deg, #1e3a8a, #2563eb);
@@ -77,20 +75,17 @@
             font-weight: 700;
             box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
         }
-        /* disabled button style */
         button:disabled, .input-group-button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
-
         @media (max-width: 768px) {
             .blue-bar { padding: 10px; min-height: auto; }
             .tab-row { justify-content: center; }
             .tab-button { border-radius: 12px; padding: 10px 16px; font-size: 13px; }
             .tab-button.active { border-radius: 12px; }
         }
-
         .introduction {
             width: 100%;
             max-width: 700px;
@@ -104,11 +99,9 @@
             margin-top: 20px;
         }
         .introduction p { color: #444; font-size: 15px; line-height: 1.7; }
-
         .content-section { display: none; width: 100%; max-width: 700px; margin-bottom: 20px; }
         .content-section[role="tabpanel"] { display: none; }
         .content-section[role="tabpanel"][aria-hidden="false"] { display: block; }
-
         .container {
             background: rgba(255,255,255,0.92);
             backdrop-filter: blur(12px);
@@ -150,7 +143,6 @@
             cursor: pointer; font-weight: 600; transition: color 0.2s; font-size: 14px;
         }
         #findMyIpLink:hover { color: #4f46e5; text-decoration: underline; }
-
         .results {
             text-align: left; margin-top: 25px; border-top: 2px solid #f0f2f5;
             padding-top: 25px; display: none;
@@ -165,13 +157,11 @@
             border: 1px solid #eef0f5; padding: 14px 16px; text-align: left; word-break: break-word;
         }
         .results th { background: #f8fafd; font-weight: 600; color: #1e293b; font-size: 14px; }
-
         .loading-spinner {
             border: 4px solid #f0f2f5; border-top: 4px solid #6366f1; border-radius: 50%;
             width: 28px; height: 28px; animation: spin 0.8s linear infinite; margin: 20px auto; display: none;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         .error-message {
             color: #ef4444; text-align: center; margin-top: 15px; display: none; font-weight: 500;
             background: #fef2f2; padding: 12px; border-radius: 12px;
@@ -192,7 +182,6 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
         .copy-btn:hover { background: #059669; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3); transform: translateY(-1px); }
-
         .mechanism-row {
             display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
             background: #f9fafc; padding: 12px; border-radius: 14px; border: 1px solid #e0e5f0; transition: all 0.2s;
@@ -211,7 +200,6 @@
             cursor: pointer; font-weight: 700; transition: all 0.2s;
         }
         .mechanism-row .remove-mech-btn:hover { background: #ef4444; color: white; }
-
         .speed-cards { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px; }
         .speed-card {
             background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 25px 30px;
@@ -222,8 +210,37 @@
         .speed-label { font-size: 14px; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
         .server-info { font-size: 0.9em; color: #6b7280; margin-bottom: 20px; text-align: center; }
         .geo-info { font-size: 0.9em; color: #6b7280; margin-top: 15px; }
-        .disclaimer-note { font-size: 0.85em; color: #6b7280; background: #f8fafd; padding: 10px 14px; border-radius: 10px; margin-top: 10px; border-left: 3px solid #f59e0b; text-align: left; }
-
+        .disclaimer-note {
+            font-size: 0.85em; color: #6b7280; background: #f8fafd; padding: 10px 14px; border-radius: 10px;
+            margin-top: 10px; border-left: 3px solid #f59e0b; text-align: left;
+        }
+        .disclaimer-note.warning {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        .cache-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .retry-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        .retry-btn:hover { background: #d97706; }
         @media (max-width: 768px) {
             .tab-button { border-radius: 12px; padding: 10px 16px; font-size: 13px; }
             .input-group { flex-direction: column; }
@@ -237,7 +254,7 @@
 </head>
 <body>
 
-    <!-- Blue Top Bar with Wrapping Worksheet Tabs -->
+    <!-- Blue Top Bar -->
     <div class="blue-bar">
         <div class="tab-row" role="tablist">
             <button id="tab-ipLookup" role="tab" aria-selected="true" aria-controls="ipLookupSection" class="tab-button active">IP Lookup</button>
@@ -246,8 +263,6 @@
             <button id="tab-dmarcLookup" role="tab" aria-selected="false" aria-controls="dmarcLookupSection" class="tab-button">DMARC Suite</button>
             <button id="tab-spfLookup" role="tab" aria-selected="false" aria-controls="spfLookupSection" class="tab-button">SPF Suite</button>
             <button id="tab-dkimLookup" role="tab" aria-selected="false" aria-controls="dkimLookupSection" class="tab-button">DKIM</button>
-            <button id="tab-cnameLookup" role="tab" aria-selected="false" aria-controls="cnameLookupSection" class="tab-button">CNAME</button>
-            <button id="tab-aaaaLookup" role="tab" aria-selected="false" aria-controls="aaaaLookupSection" class="tab-button">AAAA</button>
             <button id="tab-ipLeakTest" role="tab" aria-selected="false" aria-controls="ipLeakTestSection" class="tab-button">IP Leak Test</button>
             <button id="tab-securityChecks" role="tab" aria-selected="false" aria-controls="securityChecksSection" class="tab-button">Security Checks</button>
             <button id="tab-speedTest" role="tab" aria-selected="false" aria-controls="speedTestSection" class="tab-button">Speed Test</button>
@@ -260,7 +275,7 @@
         <p>Welcome to the free IP & DNS Lookup Tool. This page provides a comprehensive set of network diagnostic tools, including IP geolocation, DNS record lookups, security checks, and a built-in internet speed test with upload, download, and geo location.</p>
     </div>
 
-    <!-- All sections now have role="tabpanel" and aria-labelledby -->
+    <!-- IP Lookup -->
     <div id="ipLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-ipLookup" aria-hidden="false" style="display: block;">
         <div class="container">
             <h1>IP Address Geolocation</h1>
@@ -286,19 +301,33 @@
         </div>
     </div>
 
+    <!-- DNS Lookup (now includes ALL record types including CNAME & AAAA) -->
     <div id="dnsLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-dnsLookup" aria-hidden="true">
         <div class="container">
             <h1>DNS Record Lookup</h1>
             <form id="dnsForm">
                 <div class="input-group">
                     <input type="text" id="dnsInput" placeholder="Enter a domain (e.g., google.com)">
-                    <button type="submit" id="lookupDnsButton">Lookup DNS</button>
+                    <select id="dnsTypeSelect" style="flex: 0 0 130px;">
+                        <option value="ALL">ALL (A, AAAA, TXT, NS, CNAME)</option>
+                        <option value="A">A</option>
+                        <option value="AAAA">AAAA</option>
+                        <option value="MX">MX</option>
+                        <option value="TXT">TXT</option>
+                        <option value="NS">NS</option>
+                        <option value="CNAME">CNAME</option>
+                        <option value="SOA">SOA</option>
+                        <option value="CAA">CAA</option>
+                        <option value="SRV">SRV</option>
+                        <option value="PTR">PTR</option>
+                    </select>
+                    <button type="submit" id="lookupDnsButton">Lookup</button>
                 </div>
             </form>
             <p id="error-message-dns" class="error-message" role="alert"></p>
             <div id="dnsLoadingSpinner" class="loading-spinner"></div>
             <div id="dnsResults" class="results">
-                <h2>DNS Records</h2>
+                <h2>DNS Records <span id="dnsCacheBadge" class="cache-badge" style="display:none;">cached</span></h2>
                 <table>
                     <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
                     <tbody id="dnsTableBody"></tbody>
@@ -307,6 +336,7 @@
         </div>
     </div>
 
+    <!-- MX Lookup -->
     <div id="mxLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-mxLookup" aria-hidden="true">
         <div class="container">
             <h1>MX Record Lookup</h1>
@@ -319,7 +349,7 @@
             <p id="error-message-mx" class="error-message" role="alert"></p>
             <div id="mxLoadingSpinner" class="loading-spinner"></div>
             <div id="mxResults" class="results">
-                <h2>MX Records</h2>
+                <h2>MX Records <span id="mxCacheBadge" class="cache-badge" style="display:none;">cached</span></h2>
                 <table>
                     <thead><tr><th>Pref</th><th>Hostname</th><th>IP Addresses</th><th>TTL</th></tr></thead>
                     <tbody id="mxTableBody"></tbody>
@@ -328,6 +358,7 @@
         </div>
     </div>
 
+    <!-- DMARC Suite -->
     <div id="dmarcLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-dmarcLookup" aria-hidden="true">
         <div class="container">
             <h1>DMARC Record Lookup</h1>
@@ -340,7 +371,7 @@
             <p id="error-message-dmarc" class="error-message" role="alert"></p>
             <div id="dmarcLoadingSpinner" class="loading-spinner"></div>
             <div id="dmarcResults" class="results">
-                <h2>DMARC Record</h2>
+                <h2>DMARC Record <span id="dmarcCacheBadge" class="cache-badge" style="display:none;">cached</span></h2>
                 <table>
                     <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
                     <tbody id="dmarcTableBody"></tbody>
@@ -380,6 +411,7 @@
         </div>
     </div>
 
+    <!-- SPF Suite -->
     <div id="spfLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-spfLookup" aria-hidden="true">
         <div class="container">
             <h1>SPF Record Lookup</h1>
@@ -392,7 +424,7 @@
             <p id="error-message-spf" class="error-message" role="alert"></p>
             <div id="spfLoadingSpinner" class="loading-spinner"></div>
             <div id="spfResults" class="results">
-                <h2>SPF Records</h2>
+                <h2>SPF Records <span id="spfCacheBadge" class="cache-badge" style="display:none;">cached</span></h2>
                 <table>
                     <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
                     <tbody id="spfTableBody"></tbody>
@@ -422,6 +454,7 @@
         </div>
     </div>
 
+    <!-- DKIM -->
     <div id="dkimLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-dkimLookup" aria-hidden="true">
         <div class="container">
             <h1>DKIM Record Lookup</h1>
@@ -435,7 +468,7 @@
             <p id="error-message-dkim" class="error-message" role="alert"></p>
             <div id="dkimLoadingSpinner" class="loading-spinner"></div>
             <div id="dkimResults" class="results">
-                <h2>DKIM Records</h2>
+                <h2>DKIM Records <span id="dkimCacheBadge" class="cache-badge" style="display:none;">cached</span></h2>
                 <table>
                     <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
                     <tbody id="dkimTableBody"></tbody>
@@ -445,49 +478,7 @@
         </div>
     </div>
 
-    <div id="cnameLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-cnameLookup" aria-hidden="true">
-        <div class="container">
-            <h1>CNAME Record Lookup</h1>
-            <form id="cnameForm">
-                <div class="input-group">
-                    <input type="text" id="cnameDomainInput" placeholder="Enter a domain or subdomain (e.g., www.example.com)">
-                    <button type="submit" id="lookupCnameButton">Lookup CNAME</button>
-                </div>
-            </form>
-            <p id="error-message-cname" class="error-message" role="alert"></p>
-            <div id="cnameLoadingSpinner" class="loading-spinner"></div>
-            <div id="cnameResults" class="results">
-                <h2>CNAME Records</h2>
-                <table>
-                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
-                    <tbody id="cnameTableBody"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div id="aaaaLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-aaaaLookup" aria-hidden="true">
-        <div class="container">
-            <h1>AAAA Record Lookup</h1>
-            <p style="font-size:0.9em;color:#6b7280;margin-bottom:20px;">IPv6 address only</p>
-            <form id="aaaaForm">
-                <div class="input-group">
-                    <input type="text" id="aaaaDomainInput" placeholder="Enter a domain (e.g., google.com)">
-                    <button type="submit" id="lookupAaaaButton">Lookup AAAA</button>
-                </div>
-            </form>
-            <p id="error-message-aaaa" class="error-message" role="alert"></p>
-            <div id="aaaaLoadingSpinner" class="loading-spinner"></div>
-            <div id="aaaaResults" class="results">
-                <h2>AAAA Records</h2>
-                <table>
-                    <thead><tr><th>Type</th><th>Record</th><th>TTL</th></tr></thead>
-                    <tbody id="aaaaTableBody"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+    <!-- IP Leak Test -->
     <div id="ipLeakTestSection" class="content-section" role="tabpanel" aria-labelledby="tab-ipLeakTest" aria-hidden="true">
         <div class="container">
             <h1>IP Leak Test</h1>
@@ -506,6 +497,7 @@
         </div>
     </div>
 
+    <!-- Security Checks -->
     <div id="securityChecksSection" class="content-section" role="tabpanel" aria-labelledby="tab-securityChecks" aria-hidden="true">
         <div class="container">
             <h1>Security Checks</h1>
@@ -520,14 +512,14 @@
                 <p id="error-message-security-ip" class="error-message" role="alert"></p>
                 <div id="ipSecurityLoadingSpinner" class="loading-spinner"></div>
                 <div id="ipSecurityResults" class="results">
-                    <h3>IP Status</h3>
+                    <h3>IP Status <span id="ipSecurityCacheBadge" class="cache-badge" style="display:none;">cached</span></h3>
                     <p id="securityIpAddress"><strong>IP Address:</strong> <span></span></p>
                     <div id="securityStatusMessage" class="security-status"></div>
                     <table>
                         <thead><tr><th>Check</th><th>Result</th></tr></thead>
                         <tbody id="ipSecurityTableBody"></tbody>
                     </table>
-                    <div class="disclaimer-note">⚠️ <strong>Note:</strong> VPN/Proxy/TOR detection relies on the free ipinfo.io tier, which may not be comprehensive. For accurate threat intelligence, consider a paid service.</div>
+                    <div class="disclaimer-note warning">⚠️ <strong>Important:</strong> VPN/Proxy/TOR detection uses the free ipinfo.io tier, which may not be comprehensive. For accurate threat intelligence, consider a paid service.</div>
                 </div>
             </div>
             <div class="security-sub-section">
@@ -541,19 +533,24 @@
                 <p id="error-message-security-domain" class="error-message" role="alert"></p>
                 <div id="domainSecurityLoadingSpinner" class="loading-spinner"></div>
                 <div id="domainSecurityResults" class="results">
-                    <h3>Domain Status</h3>
+                    <h3>Domain Status <span id="domainSecurityCacheBadge" class="cache-badge" style="display:none;">cached</span></h3>
                     <p><strong>Domain:</strong> <span id="checkedDomain"></span></p>
                     <div id="domainSecurityStatusMessage" class="security-status"></div>
                     <table>
                         <thead><tr><th>Check</th><th>Result</th></tr></thead>
                         <tbody id="domainSecurityTableBody"></tbody>
                     </table>
-                    <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">Additional checks include DNS resolvability, basic record presence, and SSL/TLS certificate analysis (via SSL Labs). SSL Labs results may take 30–60 seconds if not cached.</p>
+                    <p style="font-size:0.9em;color:#6b7280;margin-top:15px;">
+                        Additional checks include DNS resolvability, basic record presence, and SSL/TLS certificate analysis (via SSL Labs).
+                        SSL Labs results may take 30–60 seconds if not cached.
+                        <button id="retrySslBtn" class="retry-btn" style="margin-left:10px;">↻ Retry SSL</button>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Speed Test -->
     <div id="speedTestSection" class="content-section" role="tabpanel" aria-labelledby="tab-speedTest" aria-hidden="true">
         <div class="container">
             <h1>Internet Speed Test</h1>
@@ -561,7 +558,6 @@
             <button id="startSpeedTestBtn" class="input-group-button">Start Test</button>
             <div id="speedTestLoadingSpinner" class="loading-spinner"></div>
             <p id="error-message-speed" class="error-message" role="alert"></p>
-
             <div id="speedTestResults" class="results" style="text-align: center;">
                 <h2>Test Results</h2>
                 <div class="speed-cards">
@@ -586,24 +582,24 @@
         </div>
     </div>
 
+    <!-- Know Your Lookup -->
     <div id="knowYourLookupSection" class="content-section" role="tabpanel" aria-labelledby="tab-knowYourLookup" aria-hidden="true">
         <div class="container" style="text-align: left;">
             <h1>Know Your Lookup</h1>
             <p style="color:#444; line-height:1.7; margin-bottom: 20px;">This suite offers a wide range of network tools. Here's what each tab helps you do:</p>
             <h3>🌐 IP Lookup</h3><p>Find the geographical location and ISP of any IP address, or look up your own.</p>
-            <h3>🔍 DNS Lookup</h3><p>Retrieve A, AAAA, TXT, NS, and CNAME records for a domain.</p>
+            <h3>🔍 DNS Lookup</h3><p>Retrieve A, AAAA, TXT, NS, CNAME, MX, SOA, CAA, SRV, or PTR records for a domain – choose your record type.</p>
             <h3>📧 MX Lookup</h3><p>Show mail exchange records and resolved IPs for email troubleshooting.</p>
             <h3>🛡️ DMARC Suite</h3><p>Lookup and generate DMARC policies to protect against email spoofing.</p>
             <h3>📨 SPF Suite</h3><p>Check or build SPF records to define authorised mail senders.</p>
             <h3>🔑 DKIM</h3><p>Search for DKIM keys using common selector names or a custom selector.</p>
-            <h3>↪️ CNAME</h3><p>View canonical (alias) records for any hostname.</p>
-            <h3>🌍 AAAA</h3><p>Lookup IPv6 addresses for modern connectivity checks.</p>
             <h3>🕵️ IP Leak Test</h3><p>Reveal your public IP to verify VPN/proxy effectiveness.</p>
             <h3>🔒 Security Checks</h3><p>Check IP reputation (VPN/Proxy/Spamhaus) and domain SSL/DNS health.</p>
             <h3>⚡ Speed Test</h3><p>Measure ping, download, and upload speeds with server and geo info.</p>
         </div>
     </div>
 
+    <!-- About Us -->
     <div id="aboutUsSection" class="content-section" role="tabpanel" aria-labelledby="tab-aboutUs" aria-hidden="true">
         <div class="container" style="text-align:left;">
             <h1>About Us</h1>
@@ -613,7 +609,37 @@
     </div>
 
     <script>
-        // ---------- Helper functions ----------
+        // ============================================================
+        // 1. GLOBAL CACHE (TTL = 5 minutes)
+        // ============================================================
+        const cache = new Map();
+        const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+        function getCached(key) {
+            const entry = cache.get(key);
+            if (!entry) return null;
+            if (Date.now() - entry.timestamp > CACHE_TTL) {
+                cache.delete(key);
+                return null;
+            }
+            return entry.data;
+        }
+
+        function setCache(key, data) {
+            cache.set(key, { data, timestamp: Date.now() });
+        }
+
+        function showCacheBadge(badgeId) {
+            const badge = document.getElementById(badgeId);
+            if (badge) {
+                badge.style.display = 'inline-block';
+                setTimeout(() => { badge.style.display = 'none'; }, 3000);
+            }
+        }
+
+        // ============================================================
+        // 2. HELPER FUNCTIONS
+        // ============================================================
         function toggleLoading(loadingId, resultsId, errorId, show) {
             document.getElementById(loadingId).style.display = show ? 'block' : 'none';
             document.getElementById(resultsId).style.display = 'none';
@@ -651,33 +677,100 @@
                     case 15: recordTypeStr = 'MX'; break;
                     case 16: recordTypeStr = 'TXT'; break;
                     case 28: recordTypeStr = 'AAAA'; break;
+                    case 6: recordTypeStr = 'SOA'; break;
+                    case 257: recordTypeStr = 'CAA'; break;
+                    case 33: recordTypeStr = 'SRV'; break;
+                    case 12: recordTypeStr = 'PTR'; break;
                     default: recordTypeStr = record.type;
                 }
                 typeCell.textContent = recordTypeStr;
-                recordCell.textContent = (record.type === 2 || record.type === 5 || record.type === 15)
+                recordCell.textContent = (record.type === 2 || record.type === 5 || record.type === 15 || record.type === 6)
                     ? record.data.replace(/\.$/, '') : record.data;
                 ttlCell.textContent = record.TTL;
             });
         }
 
-        // Generic single-type DNS lookup (CNAME, AAAA)
-        async function genericDnsLookup(type, domain, loadingId, resultsId, errorId, tableBodyId, btnId) {
+        // ============================================================
+        // 3. DNS LOOKUP (with record type selector & caching)
+        // ============================================================
+        async function performDnsLookup(domain) {
+            const recordType = document.getElementById('dnsTypeSelect').value;
+            const loadingId = 'dnsLoadingSpinner';
+            const resultsId = 'dnsResults';
+            const errorId = 'error-message-dns';
+            const btnId = 'lookupDnsButton';
+
             toggleLoading(loadingId, resultsId, errorId, true);
             disableButton(btnId, true);
-            document.getElementById(tableBodyId).innerHTML = '';
+            document.getElementById('dnsTableBody').innerHTML = '';
+            document.getElementById('dnsCacheBadge').style.display = 'none';
+
             if (!domain) {
                 showError(errorId, 'Please enter a domain name.');
                 document.getElementById(loadingId).style.display = 'none';
                 disableButton(btnId, false);
                 return;
             }
+
             try {
-                const data = await fetchDnsRecords(domain, type);
-                if (data.Answer && data.Answer.length > 0) {
-                    populateDnsTable(document.getElementById(tableBodyId), data.Answer);
-                    document.getElementById(resultsId).style.display = 'block';
+                let recordTypes = [];
+                if (recordType === 'ALL') {
+                    recordTypes = ['A', 'AAAA', 'TXT', 'NS', 'CNAME'];
                 } else {
-                    showError(errorId, `No ${type} record found for this domain.`);
+                    recordTypes = [recordType];
+                }
+
+                let cacheKey = domain + '|' + recordType;
+                let cachedData = getCached(cacheKey);
+                if (cachedData) {
+                    cachedData.forEach(record => {
+                        const row = document.getElementById('dnsTableBody').insertRow();
+                        const typeCell = row.insertCell(0);
+                        const recordCell = row.insertCell(1);
+                        const ttlCell = row.insertCell(2);
+                        typeCell.textContent = record.typeStr;
+                        recordCell.textContent = record.data;
+                        ttlCell.textContent = record.ttl;
+                    });
+                    document.getElementById(resultsId).style.display = 'block';
+                    showCacheBadge('dnsCacheBadge');
+                    document.getElementById(loadingId).style.display = 'none';
+                    disableButton(btnId, false);
+                    return;
+                }
+
+                const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
+                const allData = await Promise.all(fetchPromises);
+                let hasRecords = false;
+                const allRecords = [];
+                allData.forEach((data, index) => {
+                    if (data.Answer && data.Answer.length > 0) {
+                        hasRecords = true;
+                        const typeLabel = recordTypes[index] || 'UNKNOWN';
+                        data.Answer.forEach(rec => {
+                            const row = document.getElementById('dnsTableBody').insertRow();
+                            const typeCell = row.insertCell(0);
+                            const recordCell = row.insertCell(1);
+                            const ttlCell = row.insertCell(2);
+                            typeCell.textContent = typeLabel;
+                            recordCell.textContent = (rec.type === 2 || rec.type === 5 || rec.type === 15 || rec.type === 6)
+                                ? rec.data.replace(/\.$/, '') : rec.data;
+                            ttlCell.textContent = rec.TTL;
+                            allRecords.push({
+                                typeStr: typeLabel,
+                                data: (rec.type === 2 || rec.type === 5 || rec.type === 15 || rec.type === 6)
+                                    ? rec.data.replace(/\.$/, '') : rec.data,
+                                ttl: rec.TTL
+                            });
+                        });
+                    }
+                });
+
+                if (hasRecords) {
+                    document.getElementById(resultsId).style.display = 'block';
+                    setCache(cacheKey, allRecords);
+                } else {
+                    showError(errorId, 'No DNS records found for this domain with the selected type(s).');
                 }
             } catch (error) {
                 showError(errorId, 'An error occurred.');
@@ -688,23 +781,58 @@
             }
         }
 
-        // Generic TXT filter lookup (DMARC, SPF)
-        async function genericTxtLookup(domain, prefix, loadingId, resultsId, errorId, tableBodyId, btnId) {
+        // ============================================================
+        // 4. Generic TXT filter lookup (DMARC, SPF) with caching
+        // ============================================================
+        async function genericTxtLookup(domain, prefix, loadingId, resultsId, errorId, tableBodyId, btnId, cacheBadgeId) {
             toggleLoading(loadingId, resultsId, errorId, true);
             disableButton(btnId, true);
             document.getElementById(tableBodyId).innerHTML = '';
+            document.getElementById(cacheBadgeId).style.display = 'none';
+
             if (!domain) {
                 showError(errorId, 'Please enter a domain name.');
                 document.getElementById(loadingId).style.display = 'none';
                 disableButton(btnId, false);
                 return;
             }
+
+            const cacheKey = domain + '|' + prefix;
+            const cached = getCached(cacheKey);
+            if (cached) {
+                cached.forEach(rec => {
+                    const row = document.getElementById(tableBodyId).insertRow();
+                    const typeCell = row.insertCell(0);
+                    const recordCell = row.insertCell(1);
+                    const ttlCell = row.insertCell(2);
+                    typeCell.textContent = rec.typeStr;
+                    recordCell.textContent = rec.data;
+                    ttlCell.textContent = rec.ttl;
+                });
+                document.getElementById(resultsId).style.display = 'block';
+                showCacheBadge(cacheBadgeId);
+                document.getElementById(loadingId).style.display = 'none';
+                disableButton(btnId, false);
+                return;
+            }
+
             try {
                 const data = await fetchDnsRecords(domain, 'TXT');
                 const filtered = (data.Answer || []).filter(r => r.data.trim().startsWith(`"${prefix}`));
                 if (filtered.length > 0) {
-                    populateDnsTable(document.getElementById(tableBodyId), filtered);
+                    const records = [];
+                    filtered.forEach(rec => {
+                        const row = document.getElementById(tableBodyId).insertRow();
+                        const typeCell = row.insertCell(0);
+                        const recordCell = row.insertCell(1);
+                        const ttlCell = row.insertCell(2);
+                        typeCell.textContent = 'TXT';
+                        recordCell.textContent = rec.data;
+                        ttlCell.textContent = rec.TTL;
+                        records.push({ typeStr: 'TXT', data: rec.data, ttl: rec.TTL });
+                    });
                     document.getElementById(resultsId).style.display = 'block';
+                    setCache(cacheKey, records);
                 } else {
                     showError(errorId, `No ${prefix} record found for this domain.`);
                 }
@@ -717,10 +845,29 @@
             }
         }
 
-        // ---------- IP Lookup ----------
+        // ============================================================
+        // 5. IP Lookup with caching
+        // ============================================================
         async function performIpLookup(ipAddress) {
             toggleLoading('ipLoadingSpinner', 'ipResults', 'error-message-ip', true);
             disableButton('lookupIpButton', true);
+
+            const cacheKey = 'ipinfo_' + (ipAddress || 'myip');
+            const cached = getCached(cacheKey);
+            if (cached) {
+                document.getElementById('ip-address').textContent = cached.ip || 'N/A';
+                document.getElementById('country').textContent = cached.country || 'N/A';
+                document.getElementById('city').textContent = cached.city || 'N/A';
+                document.getElementById('region').textContent = cached.region || 'N/A';
+                document.getElementById('isp').textContent = cached.org || 'N/A';
+                document.getElementById('registrar').textContent = cached.org || 'N/A';
+                document.getElementById('timezone').textContent = cached.timezone || 'N/A';
+                document.getElementById('ipResults').style.display = 'block';
+                document.getElementById('ipLoadingSpinner').style.display = 'none';
+                disableButton('lookupIpButton', false);
+                return;
+            }
+
             const apiURL = ipAddress ? `https://ipinfo.io/${ipAddress}/json` : `https://ipinfo.io/json`;
             try {
                 const response = await fetch(apiURL);
@@ -737,6 +884,7 @@
                     document.getElementById('registrar').textContent = data.org || 'N/A';
                     document.getElementById('timezone').textContent = data.timezone || 'N/A';
                     document.getElementById('ipResults').style.display = 'block';
+                    setCache(cacheKey, data);
                 }
             } catch (error) {
                 showError('error-message-ip', 'An error occurred. Please check your connection or the IP address.');
@@ -747,53 +895,39 @@
             }
         }
 
-        // ---------- DNS Lookup (multiple types) ----------
-        async function performDnsLookup(domain) {
-            toggleLoading('dnsLoadingSpinner', 'dnsResults', 'error-message-dns', true);
-            disableButton('lookupDnsButton', true);
-            document.getElementById('dnsTableBody').innerHTML = '';
-            if (!domain) {
-                showError('error-message-dns', 'Please enter a domain name.');
-                document.getElementById('dnsLoadingSpinner').style.display = 'none';
-                disableButton('lookupDnsButton', false);
-                return;
-            }
-            const recordTypes = ['A', 'AAAA', 'TXT', 'NS', 'CNAME'];
-            const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
-            try {
-                const allData = await Promise.all(fetchPromises);
-                let hasRecords = false;
-                allData.forEach(data => {
-                    if (data.Answer && data.Answer.length > 0) {
-                        hasRecords = true;
-                        populateDnsTable(document.getElementById('dnsTableBody'), data.Answer);
-                    }
-                });
-                if (hasRecords) {
-                    document.getElementById('dnsResults').style.display = 'block';
-                } else {
-                    showError('error-message-dns', 'No DNS records found for this domain.');
-                }
-            } catch (error) {
-                showError('error-message-dns', 'An error occurred.');
-                console.error(error);
-            } finally {
-                document.getElementById('dnsLoadingSpinner').style.display = 'none';
-                disableButton('lookupDnsButton', false);
-            }
-        }
-
-        // ---------- MX Lookup ----------
+        // ============================================================
+        // 6. MX Lookup with caching
+        // ============================================================
         async function performMxLookup(domain) {
             toggleLoading('mxLoadingSpinner', 'mxResults', 'error-message-mx', true);
             disableButton('lookupMxButton', true);
             document.getElementById('mxTableBody').innerHTML = '';
+            document.getElementById('mxCacheBadge').style.display = 'none';
+
             if (!domain) {
                 showError('error-message-mx', 'Please enter a domain name.');
                 document.getElementById('mxLoadingSpinner').style.display = 'none';
                 disableButton('lookupMxButton', false);
                 return;
             }
+
+            const cacheKey = 'mx_' + domain;
+            const cached = getCached(cacheKey);
+            if (cached) {
+                cached.forEach(rec => {
+                    const row = document.getElementById('mxTableBody').insertRow();
+                    row.insertCell(0).textContent = rec.preference;
+                    row.insertCell(1).textContent = rec.hostname;
+                    row.insertCell(2).textContent = rec.ips;
+                    row.insertCell(3).textContent = rec.ttl;
+                });
+                document.getElementById('mxResults').style.display = 'block';
+                showCacheBadge('mxCacheBadge');
+                document.getElementById('mxLoadingSpinner').style.display = 'none';
+                disableButton('lookupMxButton', false);
+                return;
+            }
+
             try {
                 const data = await fetchDnsRecords(domain, 'MX');
                 if (data.Answer && data.Answer.length > 0) {
@@ -811,14 +945,17 @@
                         });
                     });
                     const mxRecordsWithIps = await Promise.all(ipLookupPromises);
+                    const cacheRecords = [];
                     mxRecordsWithIps.forEach(rec => {
                         const row = document.getElementById('mxTableBody').insertRow();
                         row.insertCell(0).textContent = rec.preference;
                         row.insertCell(1).textContent = rec.hostname;
                         row.insertCell(2).textContent = rec.ips;
                         row.insertCell(3).textContent = rec.ttl;
+                        cacheRecords.push(rec);
                     });
                     document.getElementById('mxResults').style.display = 'block';
+                    setCache(cacheKey, cacheRecords);
                 } else {
                     showError('error-message-mx', 'No MX records found for this domain.');
                 }
@@ -831,15 +968,19 @@
             }
         }
 
-        // ---------- DMARC, SPF (using genericTxtLookup) ----------
+        // ============================================================
+        // 7. DMARC, SPF using genericTxtLookup
+        // ============================================================
         function performDmarcLookup(domain) {
-            genericTxtLookup(domain, 'v=DMARC1', 'dmarcLoadingSpinner', 'dmarcResults', 'error-message-dmarc', 'dmarcTableBody', 'lookupDmarcButton');
+            genericTxtLookup(domain, 'v=DMARC1', 'dmarcLoadingSpinner', 'dmarcResults', 'error-message-dmarc', 'dmarcTableBody', 'lookupDmarcButton', 'dmarcCacheBadge');
         }
         function performSpfLookup(domain) {
-            genericTxtLookup(domain, 'v=spf1', 'spfLoadingSpinner', 'spfResults', 'error-message-spf', 'spfTableBody', 'lookupSpfButton');
+            genericTxtLookup(domain, 'v=spf1', 'spfLoadingSpinner', 'spfResults', 'error-message-spf', 'spfTableBody', 'lookupSpfButton', 'spfCacheBadge');
         }
 
-        // ---------- DKIM Lookup (with custom selector) ----------
+        // ============================================================
+        // 8. DKIM Lookup with caching
+        // ============================================================
         async function performDkimLookup(domain) {
             const selectorInput = document.getElementById('dkimSelectorInput').value.trim();
             const loadingId = 'dkimLoadingSpinner';
@@ -847,10 +988,13 @@
             const errorId = 'error-message-dkim';
             const tableBodyId = 'dkimTableBody';
             const btnId = 'lookupDkimButton';
+            const cacheBadgeId = 'dkimCacheBadge';
 
             toggleLoading(loadingId, resultsId, errorId, true);
             disableButton(btnId, true);
             document.getElementById(tableBodyId).innerHTML = '';
+            document.getElementById(cacheBadgeId).style.display = 'none';
+
             if (!domain) {
                 showError(errorId, 'Please enter a domain name.');
                 document.getElementById(loadingId).style.display = 'none';
@@ -859,13 +1003,42 @@
             }
 
             const selectors = selectorInput ? [selectorInput] : ['google', 's1', 's2', 'k1', 'default', 'mail', 'selector1', '2020'];
+            const cacheKey = 'dkim_' + domain + '|' + selectorInput;
+            const cached = getCached(cacheKey);
+            if (cached) {
+                cached.forEach(rec => {
+                    const row = document.getElementById(tableBodyId).insertRow();
+                    const typeCell = row.insertCell(0);
+                    const recordCell = row.insertCell(1);
+                    const ttlCell = row.insertCell(2);
+                    typeCell.textContent = rec.typeStr;
+                    recordCell.textContent = rec.data;
+                    ttlCell.textContent = rec.ttl;
+                });
+                document.getElementById(resultsId).style.display = 'block';
+                showCacheBadge(cacheBadgeId);
+                document.getElementById(loadingId).style.display = 'none';
+                disableButton(btnId, false);
+                return;
+            }
+
             let dkimFound = false;
+            const records = [];
             for (const sel of selectors) {
                 try {
                     const data = await fetchDnsRecords(`${sel}._domainkey.${domain}`, 'TXT');
                     const dkimRecords = (data.Answer || []).filter(record => record.data.trim().startsWith('"v=DKIM1;'));
                     if (dkimRecords.length > 0) {
-                        populateDnsTable(document.getElementById(tableBodyId), dkimRecords);
+                        dkimRecords.forEach(rec => {
+                            const row = document.getElementById(tableBodyId).insertRow();
+                            const typeCell = row.insertCell(0);
+                            const recordCell = row.insertCell(1);
+                            const ttlCell = row.insertCell(2);
+                            typeCell.textContent = 'TXT';
+                            recordCell.textContent = rec.data;
+                            ttlCell.textContent = rec.TTL;
+                            records.push({ typeStr: 'TXT', data: rec.data, ttl: rec.TTL });
+                        });
                         dkimFound = true;
                         break;
                     }
@@ -873,6 +1046,7 @@
             }
             if (dkimFound) {
                 document.getElementById(resultsId).style.display = 'block';
+                setCache(cacheKey, records);
             } else {
                 showError(errorId, `No DKIM record found for "${domain}" with ${selectorInput ? 'selector "'+selectorInput+'"' : 'common selectors'}.`);
             }
@@ -880,15 +1054,9 @@
             disableButton(btnId, false);
         }
 
-        // ---------- CNAME, AAAA (using genericDnsLookup) ----------
-        function performCnameLookup(domain) {
-            genericDnsLookup('CNAME', domain, 'cnameLoadingSpinner', 'cnameResults', 'error-message-cname', 'cnameTableBody', 'lookupCnameButton');
-        }
-        function performAaaaLookup(domain) {
-            genericDnsLookup('AAAA', domain, 'aaaaLoadingSpinner', 'aaaaResults', 'error-message-aaaa', 'aaaaTableBody', 'lookupAaaaButton');
-        }
-
-        // ---------- IP Leak Test (with IPv6 reverse DNS handling) ----------
+        // ============================================================
+        // 9. IP Leak Test
+        // ============================================================
         async function performIpLeakTest() {
             toggleLoading('ipLeakTestLoadingSpinner', 'ipLeakTestResults', 'error-message-ip-leak', true);
             disableButton('performIpLeakTestButton', true);
@@ -908,7 +1076,6 @@
                 let hostname = 'N/A';
                 const ip = ipData.ip;
                 if (ip) {
-                    // IPv6 check: if contains ':', skip reverse DNS
                     if (ip.includes(':')) {
                         hostname = 'IPv6 (reverse lookup not supported in this tool)';
                     } else {
@@ -935,18 +1102,56 @@
             }
         }
 
-        // ---------- IP Security Check ----------
+        // ============================================================
+        // 10. IP Security Check (with caching)
+        // ============================================================
         async function performIpSecurityCheck(ipAddress) {
             toggleLoading('ipSecurityLoadingSpinner', 'ipSecurityResults', 'error-message-security-ip', true);
             disableButton('checkIpSecurityButton', true);
             const tbody = document.getElementById('ipSecurityTableBody');
             tbody.innerHTML = '';
+            document.getElementById('ipSecurityCacheBadge').style.display = 'none';
+
             if (!ipAddress) {
                 showError('error-message-security-ip', 'Please enter an IP address.');
                 document.getElementById('ipSecurityLoadingSpinner').style.display = 'none';
                 disableButton('checkIpSecurityButton', false);
                 return;
             }
+
+            const cacheKey = 'ipsec_' + ipAddress;
+            const cached = getCached(cacheKey);
+            if (cached) {
+                document.querySelector('#securityIpAddress span').textContent = cached.ip || 'N/A';
+                const securityStatusMessage = document.getElementById('securityStatusMessage');
+                securityStatusMessage.textContent = '';
+                securityStatusMessage.className = 'security-status';
+                function addCheckRow(checkName, result, isWarning) {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = checkName;
+                    const resCell = row.insertCell(1);
+                    resCell.textContent = result;
+                    resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+                    resCell.textContent = (isWarning ? '⚠️ ' : '✅ ') + resCell.textContent;
+                }
+                addCheckRow('VPN Detected', cached.vpn ? 'Yes' : 'No', cached.vpn);
+                addCheckRow('Proxy Detected', cached.proxy ? 'Yes' : 'No', cached.proxy);
+                addCheckRow('TOR Detected', cached.tor ? 'Yes' : 'No', cached.tor);
+                addCheckRow('Spamhaus Zen Blacklist', cached.spamhausStatus, cached.spamhausListed);
+                if (cached.vpn || cached.proxy || cached.tor || cached.spamhausListed) {
+                    securityStatusMessage.innerHTML = '⚠️ This IP shows potential risks (VPN/Proxy/TOR or blacklist).';
+                    securityStatusMessage.classList.add('warning');
+                } else {
+                    securityStatusMessage.innerHTML = '✅ This IP appears to be clean (no known VPN/Proxy/TOR and not on Spamhaus Zen).';
+                    securityStatusMessage.classList.add('safe');
+                }
+                document.getElementById('ipSecurityResults').style.display = 'block';
+                showCacheBadge('ipSecurityCacheBadge');
+                document.getElementById('ipSecurityLoadingSpinner').style.display = 'none';
+                disableButton('checkIpSecurityButton', false);
+                return;
+            }
+
             try {
                 const response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -959,22 +1164,10 @@
                 const securityStatusMessage = document.getElementById('securityStatusMessage');
                 securityStatusMessage.textContent = '';
                 securityStatusMessage.className = 'security-status';
-                function addCheckRow(checkName, result, isWarning = false) {
-                    const row = tbody.insertRow();
-                    row.insertCell(0).textContent = checkName;
-                    const resCell = row.insertCell(1);
-                    resCell.textContent = result;
-                    resCell.style.color = isWarning ? '#ef4444' : '#10b981';
-                    // add icon for accessibility
-                    resCell.textContent = (isWarning ? '⚠️ ' : '✅ ') + resCell.textContent;
-                }
-                // note: these fields may be unreliable in free tier
+
                 const vpn = data.vpn || false;
                 const proxy = data.proxy || false;
                 const tor = data.tor || false;
-                addCheckRow('VPN Detected', vpn ? 'Yes' : 'No', vpn);
-                addCheckRow('Proxy Detected', proxy ? 'Yes' : 'No', proxy);
-                addCheckRow('TOR Detected', tor ? 'Yes' : 'No', tor);
 
                 let spamhausStatus = 'Checking...';
                 let spamhausListed = false;
@@ -988,6 +1181,18 @@
                         spamhausStatus = 'Not listed (clean)';
                     }
                 } catch (e) { spamhausStatus = 'Error'; }
+
+                function addCheckRow(checkName, result, isWarning) {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = checkName;
+                    const resCell = row.insertCell(1);
+                    resCell.textContent = result;
+                    resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+                    resCell.textContent = (isWarning ? '⚠️ ' : '✅ ') + resCell.textContent;
+                }
+                addCheckRow('VPN Detected', vpn ? 'Yes' : 'No', vpn);
+                addCheckRow('Proxy Detected', proxy ? 'Yes' : 'No', proxy);
+                addCheckRow('TOR Detected', tor ? 'Yes' : 'No', tor);
                 addCheckRow('Spamhaus Zen Blacklist', spamhausStatus, spamhausListed);
 
                 if (vpn || proxy || tor || spamhausListed) {
@@ -998,6 +1203,7 @@
                     securityStatusMessage.classList.add('safe');
                 }
                 document.getElementById('ipSecurityResults').style.display = 'block';
+                setCache(cacheKey, { ip: data.ip, vpn, proxy, tor, spamhausStatus, spamhausListed });
             } catch (error) {
                 showError('error-message-security-ip', 'An error occurred.');
                 console.error(error);
@@ -1007,56 +1213,92 @@
             }
         }
 
-        // ---------- Domain Security Check ----------
-        async function performDomainSecurityCheck(domain) {
+        // ============================================================
+        // 11. Domain Security Check (with SSL retry & caching)
+        // ============================================================
+        async function performDomainSecurityCheck(domain, retryCount = 0) {
             toggleLoading('domainSecurityLoadingSpinner', 'domainSecurityResults', 'error-message-security-domain', true);
             disableButton('checkDomainSecurityButton', true);
             const tbody = document.getElementById('domainSecurityTableBody');
             tbody.innerHTML = '';
+            document.getElementById('domainSecurityCacheBadge').style.display = 'none';
+
             if (!domain) {
                 showError('error-message-security-domain', 'Please enter a domain name.');
                 document.getElementById('domainSecurityLoadingSpinner').style.display = 'none';
                 disableButton('checkDomainSecurityButton', false);
                 return;
             }
-            document.getElementById('checkedDomain').textContent = domain;
-            const securityStatusMessage = document.getElementById('domainSecurityStatusMessage');
-            securityStatusMessage.textContent = '';
-            securityStatusMessage.className = 'security-status';
-            function addCheckRow(checkName, result, isWarning = false) {
-                const row = tbody.insertRow();
-                row.insertCell(0).textContent = checkName;
-                const resCell = row.insertCell(1);
-                const icon = isWarning ? '⚠️ ' : '✅ ';
-                resCell.textContent = icon + result;
-                resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+
+            const cacheKey = 'domsec_' + domain;
+            const cached = getCached(cacheKey);
+            if (cached) {
+                document.getElementById('checkedDomain').textContent = domain;
+                const securityStatusMessage = document.getElementById('domainSecurityStatusMessage');
+                securityStatusMessage.textContent = '';
+                securityStatusMessage.className = 'security-status';
+                cached.rows.forEach(rowData => {
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = rowData.check;
+                    const resCell = row.insertCell(1);
+                    resCell.textContent = rowData.result;
+                    resCell.style.color = rowData.isWarning ? '#ef4444' : '#10b981';
+                    resCell.textContent = (rowData.isWarning ? '⚠️ ' : '✅ ') + resCell.textContent;
+                });
+                securityStatusMessage.innerHTML = cached.statusMessage;
+                securityStatusMessage.classList.add(cached.statusClass);
+                document.getElementById('domainSecurityResults').style.display = 'block';
+                showCacheBadge('domainSecurityCacheBadge');
+                document.getElementById('domainSecurityLoadingSpinner').style.display = 'none';
+                disableButton('checkDomainSecurityButton', false);
+                return;
             }
-            const recordTypes = ['A', 'AAAA', 'MX', 'TXT', 'NS', 'CNAME'];
-            const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
-            let hasAnyRecords = false, suspiciousCount = 0;
+
             try {
+                document.getElementById('checkedDomain').textContent = domain;
+                const securityStatusMessage = document.getElementById('domainSecurityStatusMessage');
+                securityStatusMessage.textContent = '';
+                securityStatusMessage.className = 'security-status';
+
+                const recordTypes = ['A', 'AAAA', 'MX', 'TXT', 'NS', 'CNAME'];
+                const fetchPromises = recordTypes.map(type => fetchDnsRecords(domain, type).catch(() => ({ Answer: [] })));
                 const allData = await Promise.all(fetchPromises);
+                let hasAnyRecords = false, suspiciousCount = 0;
+                const rows = [];
+
+                function addRow(checkName, result, isWarning) {
+                    rows.push({ check: checkName, result, isWarning });
+                    const row = tbody.insertRow();
+                    row.insertCell(0).textContent = checkName;
+                    const resCell = row.insertCell(1);
+                    resCell.textContent = result;
+                    resCell.style.color = isWarning ? '#ef4444' : '#10b981';
+                    resCell.textContent = (isWarning ? '⚠️ ' : '✅ ') + resCell.textContent;
+                }
+
                 const a = allData[0].Answer || [], aaaa = allData[1].Answer || [];
-                if (a.length || aaaa.length) { addCheckRow('A/AAAA Records Found', 'Yes', false); hasAnyRecords = true; }
-                else { addCheckRow('A/AAAA Records Found', 'No', true); suspiciousCount++; }
+                if (a.length || aaaa.length) { addRow('A/AAAA Records Found', 'Yes', false); hasAnyRecords = true; }
+                else { addRow('A/AAAA Records Found', 'No', true); suspiciousCount++; }
                 const mx = allData[2].Answer || [];
-                addCheckRow('MX Records Found', mx.length ? 'Yes' : 'No', mx.length === 0);
+                addRow('MX Records Found', mx.length ? 'Yes' : 'No', mx.length === 0);
                 if (!mx.length) suspiciousCount++;
                 const txt = allData[3].Answer || [];
-                addCheckRow('TXT Records Found', txt.length ? 'Yes' : 'No', false);
+                addRow('TXT Records Found', txt.length ? 'Yes' : 'No', false);
                 const ns = allData[4].Answer || [];
-                addCheckRow('NS Records Found', ns.length ? 'Yes' : 'No', ns.length === 0);
+                addRow('NS Records Found', ns.length ? 'Yes' : 'No', ns.length === 0);
                 if (!ns.length) suspiciousCount++;
                 if (ns.length) hasAnyRecords = true;
                 const cname = allData[5].Answer || [];
-                addCheckRow('CNAME Records Found', cname.length ? 'Yes' : 'No', false);
+                addRow('CNAME Records Found', cname.length ? 'Yes' : 'No', false);
 
                 let sslGrade = 'Checking...', sslValidUntil = 'Checking...', sslIssuer = 'Checking...';
+                let sslStatus = 'pending';
                 try {
                     const sslRes = await fetch(`https://api.ssllabs.com/api/v3/analyze?host=${domain}&publish=off&startNew=off&fromCache=on&maxAge=24`);
                     if (sslRes.ok) {
                         const sslData = await sslRes.json();
-                        if (sslData.status === 'READY' || sslData.status === 'IN_PROGRESS') {
+                        if (sslData.status === 'READY') {
+                            sslStatus = 'ready';
                             if (sslData.endpoints && sslData.endpoints.length > 0) {
                                 const ep = sslData.endpoints[0];
                                 sslGrade = ep.grade || 'N/A';
@@ -1066,27 +1308,51 @@
                                     if (ep.details.cert.issuerSubject) sslIssuer = ep.details.cert.issuerSubject;
                                 }
                             } else { sslGrade = 'No endpoints'; }
-                            if (sslData.status === 'IN_PROGRESS') {
-                                sslGrade = 'Analysis in progress (may take up to 60s)';
+                        } else if (sslData.status === 'IN_PROGRESS') {
+                            sslStatus = 'pending';
+                            sslGrade = 'Analysis in progress (may take up to 60s)';
+                            if (retryCount < 3) {
+                                setTimeout(() => {
+                                    performDomainSecurityCheck(domain, retryCount + 1);
+                                }, 2000);
+                                return;
+                            } else {
+                                sslGrade = 'Analysis still in progress after multiple attempts. Please use the retry button.';
                             }
-                        } else { sslGrade = 'Analysis pending'; }
-                    } else { sslGrade = 'API error'; }
-                } catch (e) { sslGrade = sslValidUntil = sslIssuer = 'Check failed'; }
-                addCheckRow('SSL/TLS Grade', sslGrade, false);
-                addCheckRow('SSL Certificate Valid Until', sslValidUntil, false);
-                addCheckRow('SSL Certificate Issuer', sslIssuer, false);
-
-                if (hasAnyRecords && suspiciousCount === 0 && sslGrade !== 'Check failed' && sslGrade !== 'API error') {
-                    securityStatusMessage.innerHTML = '✅ Domain appears to be legitimate and well-configured.';
-                    securityStatusMessage.classList.add('safe');
-                } else if (hasAnyRecords || sslGrade !== 'Check failed') {
-                    securityStatusMessage.innerHTML = '⚠️ Domain has some records but shows potential configuration issues.';
-                    securityStatusMessage.classList.add('warning');
-                } else {
-                    securityStatusMessage.innerHTML = '⚠️ Domain does not appear to resolve. Could be inactive or suspicious.';
-                    securityStatusMessage.classList.add('warning');
+                        } else {
+                            sslGrade = 'Analysis pending';
+                        }
+                    } else {
+                        sslGrade = 'API error';
+                    }
+                } catch (e) {
+                    sslGrade = 'Check failed';
+                    sslValidUntil = 'Check failed';
+                    sslIssuer = 'Check failed';
                 }
+                addRow('SSL/TLS Grade', sslGrade, false);
+                addRow('SSL Certificate Valid Until', sslValidUntil, false);
+                addRow('SSL Certificate Issuer', sslIssuer, false);
+
+                let statusMessage = '';
+                let statusClass = '';
+                if (hasAnyRecords && suspiciousCount === 0 && sslGrade !== 'Check failed' && sslGrade !== 'API error' && sslGrade !== 'Analysis in progress (may take up to 60s)' && sslGrade !== 'Analysis still in progress after multiple attempts. Please use the retry button.') {
+                    statusMessage = '✅ Domain appears to be legitimate and well-configured.';
+                    statusClass = 'safe';
+                } else if (hasAnyRecords || sslGrade !== 'Check failed') {
+                    statusMessage = '⚠️ Domain has some records but shows potential configuration issues.';
+                    statusClass = 'warning';
+                } else {
+                    statusMessage = '⚠️ Domain does not appear to resolve. Could be inactive or suspicious.';
+                    statusClass = 'warning';
+                }
+                securityStatusMessage.innerHTML = statusMessage;
+                securityStatusMessage.classList.add(statusClass);
                 document.getElementById('domainSecurityResults').style.display = 'block';
+
+                if (sslStatus !== 'pending') {
+                    setCache(cacheKey, { rows, statusMessage, statusClass });
+                }
             } catch (error) {
                 showError('error-message-security-domain', 'An error occurred.');
                 console.error(error);
@@ -1096,7 +1362,20 @@
             }
         }
 
-        // ---------- DMARC Generator ----------
+        document.getElementById('retrySslBtn').addEventListener('click', function() {
+            const domain = document.getElementById('securityDomainInput').value.trim();
+            if (!domain) {
+                showError('error-message-security-domain', 'Please enter a domain first.');
+                return;
+            }
+            const cacheKey = 'domsec_' + domain;
+            cache.delete(cacheKey);
+            performDomainSecurityCheck(domain, 0);
+        });
+
+        // ============================================================
+        // 12. DMARC Generator
+        // ============================================================
         function generateDmarcRecord() {
             const domain = document.getElementById('dmarcGenDomain').value.trim();
             const p = document.getElementById('dmarcGenPolicy').value;
@@ -1133,7 +1412,9 @@
             });
         });
 
-        // ---------- SPF Generator ----------
+        // ============================================================
+        // 13. SPF Generator
+        // ============================================================
         const mechanismContainer = document.getElementById('spfMechanismsContainer');
         function createMechanismRow(data = {}) {
             const row = document.createElement('div');
@@ -1220,7 +1501,9 @@
             });
         });
 
-        // ---------- Speed Test ----------
+        // ============================================================
+        // 14. Speed Test
+        // ============================================================
         async function performSpeedTest() {
             const startBtn = document.getElementById('startSpeedTestBtn');
             const spinner = document.getElementById('speedTestLoadingSpinner');
@@ -1304,7 +1587,9 @@
         }
         document.getElementById('startSpeedTestBtn').addEventListener('click', performSpeedTest);
 
-        // ---------- Navigation with ARIA ----------
+        // ============================================================
+        // 15. Navigation with ARIA
+        // ============================================================
         const tabMap = {
             'tab-ipLookup': 'ipLookupSection',
             'tab-dnsLookup': 'dnsLookupSection',
@@ -1312,8 +1597,6 @@
             'tab-dmarcLookup': 'dmarcLookupSection',
             'tab-spfLookup': 'spfLookupSection',
             'tab-dkimLookup': 'dkimLookupSection',
-            'tab-cnameLookup': 'cnameLookupSection',
-            'tab-aaaaLookup': 'aaaaLookupSection',
             'tab-ipLeakTest': 'ipLeakTestSection',
             'tab-securityChecks': 'securityChecksSection',
             'tab-speedTest': 'speedTestSection',
@@ -1324,7 +1607,6 @@
         function showSection(tabId) {
             const sectionId = tabMap[tabId];
             if (!sectionId) return;
-            // hide all sections and deactivate tabs
             document.querySelectorAll('.content-section').forEach(sec => {
                 sec.style.display = 'none';
                 sec.setAttribute('aria-hidden', 'true');
@@ -1333,7 +1615,6 @@
                 btn.classList.remove('active');
                 btn.setAttribute('aria-selected', 'false');
             });
-            // show selected
             const activeSection = document.getElementById(sectionId);
             activeSection.style.display = 'block';
             activeSection.setAttribute('aria-hidden', 'false');
@@ -1342,15 +1623,15 @@
             activeTab.setAttribute('aria-selected', 'true');
         }
 
-        // Initial show
         showSection('tab-ipLookup');
 
-        // Add click listeners
         document.querySelectorAll('.tab-button').forEach(btn => {
             btn.addEventListener('click', () => showSection(btn.id));
         });
 
-        // ---------- Form event listeners (with button disabling) ----------
+        // ============================================================
+        // 16. Form event listeners
+        // ============================================================
         document.getElementById('ipForm').addEventListener('submit', (e) => { e.preventDefault(); performIpLookup(document.getElementById('ipInput').value.trim()); });
         document.getElementById('findMyIpLink').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('ipInput').value = ''; performIpLookup(''); });
         document.getElementById('dnsForm').addEventListener('submit', (e) => { e.preventDefault(); performDnsLookup(document.getElementById('dnsInput').value.trim()); });
@@ -1358,11 +1639,14 @@
         document.getElementById('dmarcForm').addEventListener('submit', (e) => { e.preventDefault(); performDmarcLookup(document.getElementById('dmarcDomainInput').value.trim()); });
         document.getElementById('spfForm').addEventListener('submit', (e) => { e.preventDefault(); performSpfLookup(document.getElementById('spfDomainInput').value.trim()); });
         document.getElementById('dkimForm').addEventListener('submit', (e) => { e.preventDefault(); performDkimLookup(document.getElementById('dkimDomainInput').value.trim()); });
-        document.getElementById('cnameForm').addEventListener('submit', (e) => { e.preventDefault(); performCnameLookup(document.getElementById('cnameDomainInput').value.trim()); });
-        document.getElementById('aaaaForm').addEventListener('submit', (e) => { e.preventDefault(); performAaaaLookup(document.getElementById('aaaaDomainInput').value.trim()); });
         document.getElementById('performIpLeakTestButton').addEventListener('click', (e) => { e.preventDefault(); performIpLeakTest(); });
         document.getElementById('ipSecurityForm').addEventListener('submit', (e) => { e.preventDefault(); performIpSecurityCheck(document.getElementById('securityIpInput').value.trim()); });
-        document.getElementById('domainSecurityForm').addEventListener('submit', (e) => { e.preventDefault(); performDomainSecurityCheck(document.getElementById('securityDomainInput').value.trim()); });
+        document.getElementById('domainSecurityForm').addEventListener('submit', (e) => { e.preventDefault(); performDomainSecurityCheck(document.getElementById('securityDomainInput').value.trim(), 0); });
+
+        // Pre-populate default domain for DNS
+        document.getElementById('dnsInput').value = 'google.com';
+
+        console.log('✅ IP & DNS Lookup Tool loaded (CNAME & AAAA tabs removed – now consolidated in DNS Lookup).');
     </script>
 </body>
 </html>
